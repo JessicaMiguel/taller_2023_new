@@ -99,6 +99,13 @@ public class Controlador implements ActionListener
 		}
 
 	}
+	
+	
+	/**
+	 * Este método tiene como objetivo eliminar un ticket de la instancia de la clase Agencia utilizando el método eliminarTicket() de esa instancia. 
+	 * Se trata la excepción ImposibleModificarTicketsException
+	 * Luego, después de intentar eliminar el ticket, se llama al método actualizaCliente() de la vista para actualizar la interfaz de usuario del cliente.
+	 */
 
 	private void eliminarTicket()
 	{
@@ -112,6 +119,12 @@ public class Controlador implements ActionListener
 	}  
 	  this.vista.actualizaCliente();
 	}
+	
+	
+	/**
+	 * Este método se encarga de seleccionar un candidato, utilizando el método setCandidato() de la instancia de usuario y obtiene el candidato de la vista 
+	 * utilizando el método getCandidato()
+	 */
 
 	private void seleccionarCandidato()
 	{
@@ -171,6 +184,26 @@ public class Controlador implements ActionListener
 		this.agencia.cerrarSesion();
 		agencia.guardarAgencia(nombreArchivo);
 	}
+	
+	
+	/**
+	 * Permite a los usuarios crear nuevos tickets.
+	 * El método recopila información ingresada por el usuario desde la vista.
+	 * Estos datos incluyen:
+
+	 * jornada: La jornada del trabajo.
+	 * locacion: La locación o lugar donde se llevará a cabo el trabajo.
+	 * estudios: Información sobre los estudios requeridos para el trabajo.
+	 * puesto: El tipo de puesto de trabajo.
+	 * experiencia: La experiencia previa requerida para el trabajo.
+	 * remuneracion: La remuneración ofrecida para el trabajo.
+	 * Si tipoUsuario es Empleado, intentará crear un nuevo ticket de empleado utilizando los datos recopilados. Esto se hace llamando al método crearTicketEmpleado() de la instancia de agencia. 
+	 * Si ocurre alguna excepción del tipo ImposibleModificarTicketsException, se trata.
+	 * Si tipoUsuario es Empleador intentará crear un nuevo ticket de empleador utilizando los datos recopilados. Esto se hace llamando al método crearTicketEmpleador() de la instancia de agencia. 
+	 * También maneja excepciones del tipo ImposibleModificarTicketsException
+	 * Después de crear el nuevo ticket (ya sea de empleado o empleador), se llama al método actualizaCliente() de la vista para actualizar la interfaz de usuario del cliente.
+	 * 
+	 */
 
 	public void nuevoTicket()
 	{

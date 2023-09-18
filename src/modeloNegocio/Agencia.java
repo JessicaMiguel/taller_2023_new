@@ -67,6 +67,21 @@ public class Agencia
     {
 	this.v1 = limiteInferior;
     }
+    
+    /**
+     * Dependiendo del valor del atributo estadoContratacion, este método realiza diferentes acciones:
+     * Si estadoContratacion es verdadero, se buscan matcheos entre empleadores y empleados para trabajos disponibles.
+     * También, se penaliza a los empleadores que tienen un tocket asociado pero no fueron elegidos en una ronda de contratación, y
+     * "limpia" o elimina todas las conexiones entre candidatos y puestos de trabajo después de una ronda de contratación. 
+     * Esto prepara el sistema para una nueva ronda de contratación donde los candidatos pueden postularse nuevamente a nuevos puestos.
+     * Si estadoContratacion es falso, se generan nuevos postulantes para los trabajos disponibles y se calculan los premios o castigos basados en el 
+     * resultado de la ronda anterior.
+     * Al final del método, se invierte el valor de estadoContratacion, lo que significa que se alternará entre rondas de contratación y generación de 
+     * candidatos en llamadas sucesivas a este método.
+     * 
+     * <b>Post: </b> Dependiendo del estadoContratacion se controla el flujo de una ronda de contratación y la generación de candidatos
+     * 
+     */
 
     public void gatillarRonda()
     {
@@ -84,6 +99,14 @@ public class Agencia
 	}
 	this.estadoContratacion = !this.estadoContratacion;
     }
+    
+    /**
+     * Tiene como objetivo eliminar las listas de postulantes de los empleadores y empleados.
+     * El propósito de este método es "limpiar" las listas de postulantes de los empleadores y
+     * empleados pretensos, lo que implica eliminar todas las conexiones entre candidatos y puestos de trabajo después de una ronda de contratación
+     * <b>Post: </b> Prepara el sistema para una nueva ronda de contratación donde los candidatos pueden postularse nuevamente a nuevos puestos.
+     * 
+     */
 
     private void limpiaPostulantes()
     {
@@ -96,6 +119,14 @@ public class Agencia
 	    it2.next().setListaDePostulantes(null);
 
     }
+    
+    /**
+     * Este método penaliza a los empleadores que tienen un ticket asociado pero no fueron elegidos en una ronda de contratación.
+     * 
+     * <b>Pre: </b> Debe haber objetos válidos y registrados en las colecciones empleadores y empleados.
+     * <b>Post: </b> Se penaliza al empleador reduciendo su puntaje en 20 unidades
+     */
+    
 
     private void penalizaEmpleadores()
     {
