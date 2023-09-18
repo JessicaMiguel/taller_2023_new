@@ -141,7 +141,7 @@ public abstract class Usuario
 
 
 	
-	public abstract double calculaComision(double sueldo);
+	public abstract double calculaComision(Ticket ticket);
 	
 	
 	

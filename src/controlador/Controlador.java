@@ -2,8 +2,7 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
+import java.io.IOException;
 
 import excepciones.ContraException;
 import excepciones.ImposibleCrearEmpleadoException;
@@ -13,6 +12,7 @@ import excepciones.NewRegisterException;
 import excepciones.NombreUsuarioException;
 import modeloDatos.Usuario;
 import modeloNegocio.Agencia;
+import util.Constantes;
 import vista.IOptionPane;
 import vista.IVista;
 import vista.MyJOptionPane;
@@ -60,40 +60,40 @@ public class Controlador implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		String comando = e.getActionCommand();
-		if (comando.equalsIgnoreCase(IVista.REGISTRAR))
+		if (comando.equalsIgnoreCase(Constantes.REGISTRAR))
 		{
-		} else if (comando.equalsIgnoreCase(IVista.REG_BUTTON_CANCELAR))
+		} else if (comando.equalsIgnoreCase(Constantes.REG_BUTTON_CANCELAR))
 		{
-		} else if (comando.equalsIgnoreCase(IVista.LOGIN))
+		} else if (comando.equalsIgnoreCase(Constantes.LOGIN))
 		{
 			this.login();
-		} else if (comando.equalsIgnoreCase(IVista.REG_BUTTON_REGISTRAR))
+		} else if (comando.equalsIgnoreCase(Constantes.REG_BUTTON_REGISTRAR))
 		{
 			this.registrar();
-		} else if (comando.equalsIgnoreCase(IVista.CERRARSESION))
+		} else if (comando.equalsIgnoreCase(Constantes.CERRARSESION))
 		{
 			this.cerrarSesion();
-		} else if (comando.equalsIgnoreCase(IVista.CONFIRMARNUEVOTICKET))
+		} else if (comando.equalsIgnoreCase(Constantes.CONFIRMARNUEVOTICKET))
 			this.nuevoTicket();
-		else if (comando.equalsIgnoreCase(IVista.GATILLAR))
+		else if (comando.equalsIgnoreCase(Constantes.GATILLAR))
 		{
 			this.gatillar();
-		} else if (comando.equalsIgnoreCase(IVista.MODIFICAR_VALORES))
+		} else if (comando.equalsIgnoreCase(Constantes.MODIFICAR_VALORES))
 		{
 			this.modificarValorsV1V2();
 
 		}
-		else if (comando.equalsIgnoreCase(IVista.SELECCIONAR_CANDIDATO))
+		else if (comando.equalsIgnoreCase(Constantes.SELECCIONAR_CANDIDATO))
 		{
 			this.seleccionarCandidato();
 
 		}
 
-		else if (comando.equalsIgnoreCase(IVista.APLICAR_PROMO))
+		else if (comando.equalsIgnoreCase(Constantes.APLICAR_PROMO))
 		{
 			this.aplicarPromo();
 		}
-		else if (comando.equalsIgnoreCase(IVista.ELIMINAR_TICKET))
+		else if (comando.equalsIgnoreCase(Constantes.ELIMINAR_TICKET))
 		{
 			this.eliminarTicket();
 		}
@@ -182,7 +182,14 @@ public class Controlador implements ActionListener
 	{
 		this.usuario = null;
 		this.agencia.cerrarSesion();
-		agencia.guardarAgencia(nombreArchivo);
+		try
+		{
+			agencia.guardarAgencia(nombreArchivo);
+		} catch (IOException e)
+		{
+			this.myOptionPane.ShowMessage(e.getMessage());
+		}
+		
 	}
 	
 	
@@ -264,7 +271,7 @@ public class Controlador implements ActionListener
 		String nombreUsuario = vista.getRegUsserName();
 		String pass = this.vista.getRegPassword();
 		int t = 0;
-		if (tipoUsuario.equalsIgnoreCase(IVista.EMPLEADO))
+		if (tipoUsuario.equalsIgnoreCase(Constantes.EMPLEADO))
 		{
 
 			try

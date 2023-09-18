@@ -2,7 +2,7 @@ package modeloDatos;
 
 import java.util.HashMap;
 
-import vista.IVista;
+import util.Constantes;
 
 public class Ticket
 {
@@ -46,25 +46,25 @@ public class Ticket
 
     static
     {
-	hashLocacion.put(IVista.HOME_OFFICE, 0);
-	hashLocacion.put(IVista.PRESENCIAL, 1);
-	hashLocacion.put(IVista.INDISTINTO, 2);
+	hashLocacion.put(Constantes.HOME_OFFICE, 0);
+	hashLocacion.put(Constantes.PRESENCIAL, 1);
+	hashLocacion.put(Constantes.INDISTINTO, 2);
 
-	hashJornada.put(IVista.JORNADA_MEDIA, 0);
-	hashJornada.put(IVista.JORNADA_COMPLETA, 1);
-	hashJornada.put(IVista.JORNADA_EXTENDIDA, 2);
+	hashJornada.put(Constantes.JORNADA_MEDIA, 0);
+	hashJornada.put(Constantes.JORNADA_COMPLETA, 1);
+	hashJornada.put(Constantes.JORNADA_EXTENDIDA, 2);
 
-	hashPuesto.put(IVista.JUNIOR, 0);
-	hashPuesto.put(IVista.SENIOR, 1);
-	hashPuesto.put(IVista.MANAGMENT, 2);
+	hashPuesto.put(Constantes.JUNIOR, 0);
+	hashPuesto.put(Constantes.SENIOR, 1);
+	hashPuesto.put(Constantes.MANAGMENT, 2);
 
-	hashExperiencia.put(IVista.EXP_NADA, 0);
-	hashExperiencia.put(IVista.EXP_MEDIA, 1);
-	hashExperiencia.put(IVista.EXP_MUCHA, 2);
+	hashExperiencia.put(Constantes.EXP_NADA, 0);
+	hashExperiencia.put(Constantes.EXP_MEDIA, 1);
+	hashExperiencia.put(Constantes.EXP_MUCHA, 2);
 
-	hashEstudios.put(IVista.PRIMARIOS, 0);
-	hashEstudios.put(IVista.SECUNDARIOS, 1);
-	hashEstudios.put(IVista.TERCIARIOS, 2);
+	hashEstudios.put(Constantes.PRIMARIOS, 0);
+	hashEstudios.put(Constantes.SECUNDARIOS, 1);
+	hashEstudios.put(Constantes.TERCIARIOS, 2);
 
     }
 

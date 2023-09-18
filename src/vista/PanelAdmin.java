@@ -22,6 +22,7 @@ import javax.swing.border.TitledBorder;
 import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
 import modeloNegocio.Agencia;
+import util.Constantes;
 
 public class PanelAdmin extends PanelAgencia
 {
@@ -163,10 +164,10 @@ public class PanelAdmin extends PanelAgencia
 		this.addActionListener(this);
 		this.listEmpleadores.setModel(listModelEmpleadores);
 		this.listEmpleados.setModel(listModelEmpleados);
-		this.setActionAndName(btnCerrarSesion, IVista.CERRARSESION);
-		this.setActionAndName(this.btnGatillar, IVista.GATILLAR);
-		this.setActionAndName(this.btnPromo, IVista.APLICAR_PROMO);
-		this.setActionAndName(this.chckbxPorPostulantes, IVista.CHECK_BOX_LISTA_POSTULANTES);
+		this.setActionAndName(btnCerrarSesion, Constantes.CERRARSESION);
+		this.setActionAndName(this.btnGatillar, Constantes.GATILLAR);
+		this.setActionAndName(this.btnPromo, Constantes.APLICAR_PROMO);
+		this.setActionAndName(this.chckbxPorPostulantes, Constantes.CHECK_BOX_LISTA_POSTULANTES);
 
 		this.textFieldInferior.addKeyListener(this);
 		this.textFieldSuperior.addKeyListener(this);

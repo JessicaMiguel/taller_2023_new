@@ -2,7 +2,7 @@ package modeloDatos;
 
 import java.util.GregorianCalendar;
 
-import util.Util;
+import util.Constantes;
 
 public class Contratacion
 {
@@ -56,7 +56,7 @@ public class Contratacion
 	public String toString()
 	{
 		return "Empleado=" + empleado.getRealName() + ", empleador=" + empleador.getRealName() + ", fecha="
-				+ Util.dateFormat.format(this.fecha.getTime());
+				+ Constantes.dateFormat.format(this.fecha.getTime());
 	}
 
 }

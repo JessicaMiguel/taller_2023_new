@@ -1,19 +1,16 @@
 package modeloDatos;
 
-import java.util.ArrayList;
-
-import modeloNegocio.UsuarioPuntaje;
+import util.Constantes;
 
 public class EmpleadoPretenso extends Usuario
 {
 	private String apellido;
 	private int edad;
 
-	
-	public EmpleadoPretenso(String usserName, String password,  String realName,String telefono, String apellido,
+	public EmpleadoPretenso(String usserName, String password, String realName, String telefono, String apellido,
 			int edad)
 	{
-		super(usserName, password, realName,telefono);
+		super(usserName, password, realName, telefono);
 		this.apellido = apellido;
 		this.edad = edad;
 	}
@@ -47,17 +44,24 @@ public class EmpleadoPretenso extends Usuario
 	@Override
 	public String toString()
 	{
-		return super.toString()+"  apellido=" + apellido + ", edad=" + edad;
+		return super.toString() + "  apellido=" + apellido + ", edad=" + edad;
 	}
 
 	@Override
-	public double calculaComision(double sueldo)
+	public double calculaComision(Ticket ticket)
 	{
-	    // TODO Auto-generated method stub
-	    return 0;
+		double descuento = 0;
+		if (ticket.getPuesto().equals(Constantes.JUNIOR))
+			descuento = .8;
+		else if (ticket.getPuesto().equals(Constantes.SENIOR))
+			descuento = .9;
+
+		else if (ticket.getPuesto().equals(Constantes.MANAGMENT))
+			descuento = 1;
+
+		descuento -= 0.01 * this.getPuntaje();
+		// TODO Auto-generated method stub
+		return ticket.getRemuneracion() * descuento;
 	}
 
-	
-
-	
 }

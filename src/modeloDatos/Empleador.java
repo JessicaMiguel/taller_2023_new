@@ -1,53 +1,48 @@
 package modeloDatos;
 
-import java.util.Collection;
-
-import vista.IVista;
+import util.Constantes;
 
 public class Empleador extends Usuario
 {
 	private String rubro;
 	private String tipo_persona;
-	private double descuentoComision;
 
 	public String getRubro()
 	{
 		return rubro;
 	}
 
-	
+	public Empleador()
+	{
+		super();
+	}
+
 	public String getTipo_persona()
 	{
 		return tipo_persona;
 	}
 
-		public double getDescuentoComision()
+	public Empleador(String usserName, String password, String realName, String telefono, String rubro,
+			String tipo_persona)
 	{
-		return descuentoComision;
+		super(usserName, password, telefono, realName);
+		this.rubro = rubro;
+		this.tipo_persona = tipo_persona;
 	}
 
+	@Override
+	public double calculaComision(Ticket ticket)
+	{
+		double sueldo = ticket.getRemuneracion();
+		if (this.rubro.equals(Constantes.COMERCIO_INTERNACIONAL))
+			sueldo *= 0.8;
+		else if (this.rubro.equals(Constantes.COMERCIO_LOCAL))
+			sueldo *= 0.7;
+		else if (this.rubro.equals(Constantes.SALUD))
+			sueldo *= 0.6;
 
-		public Empleador(String usserName, String password, String realName,String telefono, String rubro,
-				String tipo_persona)
-		{
-			super(usserName, password, telefono, realName);
-			this.rubro = rubro;
-			this.tipo_persona = tipo_persona;
-		if(this.rubro.equals(IVista.COMERCIO_INTERNACIONAL))
-			this.descuentoComision=0.8;
-		else if (this.rubro.equals(IVista.COMERCIO_LOCAL))
-			this.descuentoComision=0.7;
-		else if (this.rubro.equals(IVista.SALUD))
-			this.descuentoComision=0.6;
-		}
+		// TODO Auto-generated method stub
+		return sueldo;
+	}
 
-
-		@Override
-		public double calculaComision(double sueldo)
-		{
-		    // TODO Auto-generated method stub
-		    return 0;
-		}
-
-	
 }

@@ -12,6 +12,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import util.Constantes;
+
 public class PanelLogin extends JPanel implements KeyListener
 {
 	
@@ -91,12 +93,12 @@ public class PanelLogin extends JPanel implements KeyListener
 		this.panel_7.add(this.btnRegistro);
 	
 		this.addActionListener(actionListener);
-		this.textFieldUsser.setName(IVista.NOMBRE_USUARIO);
-		this.textFieldPassword.setName(IVista.PASSWORD);
-		this.btnLogin.setName(IVista.LOGIN);
-		this.btnLogin.setActionCommand(IVista.LOGIN);
-		this.btnRegistro.setName(IVista.REGISTRAR);
-		this.btnRegistro.setActionCommand(IVista.REGISTRAR);
+		this.textFieldUsser.setName(Constantes.NOMBRE_USUARIO);
+		this.textFieldPassword.setName(Constantes.PASSWORD);
+		this.btnLogin.setName(Constantes.LOGIN);
+		this.btnLogin.setActionCommand(Constantes.LOGIN);
+		this.btnRegistro.setName(Constantes.REGISTRAR);
+		this.btnRegistro.setActionCommand(Constantes.REGISTRAR);
 		
 		
 	}

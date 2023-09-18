@@ -19,11 +19,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import modeloDatos.Usuario;
 import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
+import modeloDatos.Usuario;
 import modeloNegocio.Agencia;
 import modeloNegocio.UsuarioPuntaje;
+import util.Constantes;
 
 public class PanelCliente extends PanelAgencia
 {
@@ -330,34 +331,34 @@ public class PanelCliente extends PanelAgencia
 	btnAceptar.setEnabled(false);
 	panel_7.add(btnAceptar);
 	this.actualizaCliente();
-	this.setActionAndName(this.btnCerrarSesion, IVista.CERRARSESION);
+	this.setActionAndName(this.btnCerrarSesion, Constantes.CERRARSESION);
 
-	this.setActionAndName(this.btnSeleccionarCandidato, IVista.SELECCIONAR_CANDIDATO);
+	this.setActionAndName(this.btnSeleccionarCandidato, Constantes.SELECCIONAR_CANDIDATO);
 
-	this.setActionAndName(this.btnAceptar, IVista.CONFIRMARNUEVOTICKET);
+	this.setActionAndName(this.btnAceptar, Constantes.CONFIRMARNUEVOTICKET);
 
-	this.setActionAndName(this.btnNuevoTicket, IVista.NUEVOTICKET);
-	this.setActionAndName(this.btnEliminarTicket, IVista.ELIMINAR_TICKET);
+	this.setActionAndName(this.btnNuevoTicket, Constantes.NUEVOTICKET);
+	this.setActionAndName(this.btnEliminarTicket, Constantes.ELIMINAR_TICKET);
 
-	this.setActionAndName(this.rdbtnCargaMedia, IVista.JORNADA_MEDIA);
-	this.setActionAndName(this.rdbtnCompleta, IVista.JORNADA_COMPLETA);
-	this.setActionAndName(this.rdbtnExtendida, IVista.JORNADA_EXTENDIDA);
+	this.setActionAndName(this.rdbtnCargaMedia, Constantes.JORNADA_MEDIA);
+	this.setActionAndName(this.rdbtnCompleta, Constantes.JORNADA_COMPLETA);
+	this.setActionAndName(this.rdbtnExtendida, Constantes.JORNADA_EXTENDIDA);
 
-	this.setActionAndName(this.rdbtnNada, IVista.EXP_NADA);
-	this.setActionAndName(this.rdbtnExperienciaMedia, IVista.EXP_MEDIA);
-	this.setActionAndName(this.rdbtnMucha, IVista.EXP_MUCHA);
+	this.setActionAndName(this.rdbtnNada, Constantes.EXP_NADA);
+	this.setActionAndName(this.rdbtnExperienciaMedia, Constantes.EXP_MEDIA);
+	this.setActionAndName(this.rdbtnMucha, Constantes.EXP_MUCHA);
 
-	this.setActionAndName(this.rdbtnTerciario, IVista.TERCIARIOS);
-	this.setActionAndName(this.rdbtnSecundario, IVista.SECUNDARIOS);
-	this.setActionAndName(this.rdbtnPrimario, IVista.PRIMARIOS);
+	this.setActionAndName(this.rdbtnTerciario, Constantes.TERCIARIOS);
+	this.setActionAndName(this.rdbtnSecundario, Constantes.SECUNDARIOS);
+	this.setActionAndName(this.rdbtnPrimario, Constantes.PRIMARIOS);
 
-	this.setActionAndName(this.rdbtnJunior, IVista.JUNIOR);
-	this.setActionAndName(this.rdbtnSenior, IVista.SENIOR);
-	this.setActionAndName(this.rdbtnManagment, IVista.MANAGMENT);
+	this.setActionAndName(this.rdbtnJunior, Constantes.JUNIOR);
+	this.setActionAndName(this.rdbtnSenior, Constantes.SENIOR);
+	this.setActionAndName(this.rdbtnManagment, Constantes.MANAGMENT);
 
-	this.setActionAndName(this.rdbtnPresencial, IVista.PRESENCIAL);
-	this.setActionAndName(this.rdbtnHomeOffice, IVista.HOME_OFFICE);
-	this.setActionAndName(this.rdbtnIndistinto, IVista.INDISTINTO);
+	this.setActionAndName(this.rdbtnPresencial, Constantes.PRESENCIAL);
+	this.setActionAndName(this.rdbtnHomeOffice, Constantes.HOME_OFFICE);
+	this.setActionAndName(this.rdbtnIndistinto, Constantes.INDISTINTO);
 
 	this.addActionListener(actionListener);
 	this.addActionListener(this);
@@ -424,11 +425,11 @@ public class PanelCliente extends PanelAgencia
     @Override
     public void actionPerformed(ActionEvent e)
     {
-	if (e.getActionCommand().equalsIgnoreCase(IVista.NUEVOTICKET))
+	if (e.getActionCommand().equalsIgnoreCase(Constantes.NUEVOTICKET))
 	{
 	    this.enabledTicket(true);
 
-	} else if (e.getActionCommand().equalsIgnoreCase(IVista.CONFIRMARNUEVOTICKET))
+	} else if (e.getActionCommand().equalsIgnoreCase(Constantes.CONFIRMARNUEVOTICKET))
 	{
 	    this.enabledTicket(false);
 	    this.btnAceptar.setEnabled(false);
@@ -437,7 +438,7 @@ public class PanelCliente extends PanelAgencia
 
 	}
 
-	else if (e.getActionCommand().equalsIgnoreCase(IVista.ELIMINAR_TICKET))
+	else if (e.getActionCommand().equalsIgnoreCase(Constantes.ELIMINAR_TICKET))
 	{
 
 	    this.btnEliminarTicket.setEnabled(false);

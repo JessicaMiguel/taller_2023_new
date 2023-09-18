@@ -3,6 +3,8 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,8 +12,9 @@ import javax.swing.border.EmptyBorder;
 
 import modeloDatos.Usuario;
 import modeloNegocio.Agencia;
+import util.Constantes;
 
-public class Ventana extends JFrame implements IVista, ActionListener
+public class Ventana extends JFrame implements IVista, ActionListener,WindowListener
 {
 
 	private JPanel contentPane;
@@ -45,6 +48,7 @@ public class Ventana extends JFrame implements IVista, ActionListener
 		this.contentPane.setLayout(new BorderLayout(0, 0));
 		this.panelActual = this.panelLogin;
 		this.contentPane.add(this.panelLogin, BorderLayout.CENTER);
+		this.addWindowListener(this);
 		this.setVisible(true);
 	}
 
@@ -98,9 +102,9 @@ public class Ventana extends JFrame implements IVista, ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		String comando = e.getActionCommand();
-		if (comando.equalsIgnoreCase(IVista.REGISTRAR))
+		if (comando.equalsIgnoreCase(Constantes.REGISTRAR))
 			this.goToRegistro();
-		else if (comando.equalsIgnoreCase(IVista.REG_BUTTON_CANCELAR) || comando.equalsIgnoreCase(IVista.CERRARSESION))
+		else if (comando.equalsIgnoreCase(Constantes.REG_BUTTON_CANCELAR) || comando.equalsIgnoreCase(Constantes.CERRARSESION))
 			this.goToLogin();
 		
 		
@@ -274,6 +278,54 @@ public class Ventana extends JFrame implements IVista, ActionListener
 	{
 	    // TODO Auto-generated method stub
 	    return this.panelCliente.getCandidato();
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e)
+	{ActionEvent ev=new ActionEvent(this,0, Constantes.CERRARSESION); 
+	this.actionListener.actionPerformed(ev);
+	
+		}
+
+	@Override
+	public void windowClosed(WindowEvent e)
+	{
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e)
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 }

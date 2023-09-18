@@ -2,13 +2,11 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -19,7 +17,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-import java.awt.Cursor;
+
+import util.Constantes;
 
 public class PanelRegistro extends PanelAgencia 
 {
@@ -283,24 +282,24 @@ public class PanelRegistro extends PanelAgencia
 
 	this.panel_25.add(this.btnCancelar);
 
-	this.textFieldApellido.setName(IVista.REG_APELLIDO);
-	this.textFieldTelefono.setName(IVista.REG_TELEFONO);
-	this.textFieldNombreReal.setName(IVista.REG_REAL_NAME);
-	this.textFieldConfirmPassword.setName(IVista.REG_CONFIRM_PASSWORD);
-	this.textFieldPassword.setName(IVista.REG_PASSWORD);
-	this.textFieldNombreUsuario.setName(IVista.REG_USSER_NAME);
-	this.textFieldEdad.setName(IVista.REG_EDAD);
+	this.textFieldApellido.setName(Constantes.REG_APELLIDO);
+	this.textFieldTelefono.setName(Constantes.REG_TELEFONO);
+	this.textFieldNombreReal.setName(Constantes.REG_REAL_NAME);
+	this.textFieldConfirmPassword.setName(Constantes.REG_CONFIRM_PASSWORD);
+	this.textFieldPassword.setName(Constantes.REG_PASSWORD);
+	this.textFieldNombreUsuario.setName(Constantes.REG_USSER_NAME);
+	this.textFieldEdad.setName(Constantes.REG_EDAD);
 	
-	this.setActionAndName(this.btnRegistrar, IVista.REG_BUTTON_REGISTRAR);
-	this.setActionAndName(this.btnCancelar, IVista.REG_BUTTON_CANCELAR);
+	this.setActionAndName(this.btnRegistrar, Constantes.REG_BUTTON_REGISTRAR);
+	this.setActionAndName(this.btnCancelar, Constantes.REG_BUTTON_CANCELAR);
 	
-	this.setActionAndName(this.rdbtnComercioInternacional, IVista.REG_RADIO_COMERCIO_INTERNACIONAL);
-	this.setActionAndName(this.rdbtnComercioLocal, IVista.REG_RADIO_COMERCIO_LOCAL);
-	this.setActionAndName(this.rdbtnSalud, IVista.REG_RADIO_SALUD);
+	this.setActionAndName(this.rdbtnComercioInternacional, Constantes.REG_RADIO_COMERCIO_INTERNACIONAL);
+	this.setActionAndName(this.rdbtnComercioLocal, Constantes.REG_RADIO_COMERCIO_LOCAL);
+	this.setActionAndName(this.rdbtnSalud, Constantes.REG_RADIO_SALUD);
 	
 	
-	this.setActionAndName(this.rdbtnFisica, IVista.REG_RADIO_FISICA);
-	this.setActionAndName(this.rdbtnJuridica, IVista.REG_RADIO_JURIDICA);
+	this.setActionAndName(this.rdbtnFisica, Constantes.REG_RADIO_FISICA);
+	this.setActionAndName(this.rdbtnJuridica, Constantes.REG_RADIO_JURIDICA);
 	
 	
 	this.addActionListener(actionListener);
@@ -382,9 +381,9 @@ public class PanelRegistro extends PanelAgencia
     {
 	String respuesta = null;
 	if (this.rdbtnEmpleado.isSelected())
-	    respuesta = IVista.EMPLEADO;
+	    respuesta = Constantes.EMPLEADO;
 	else
-	    respuesta = IVista.EMPLEADOR;
+	    respuesta = Constantes.EMPLEADOR;
 
 	return respuesta;
     }
@@ -393,9 +392,9 @@ public class PanelRegistro extends PanelAgencia
     {
 	String respuesta = null;
 	if (this.rdbtnFisica.isSelected())
-	    respuesta = IVista.FISICA;
+	    respuesta = Constantes.FISICA;
 	else
-	    respuesta = IVista.JURIDICA;
+	    respuesta = Constantes.JURIDICA;
 
 	return respuesta;
     }
@@ -405,11 +404,11 @@ public class PanelRegistro extends PanelAgencia
 
 	String respuesta = null;
 	if (this.rdbtnSalud.isSelected())
-	    respuesta = IVista.SALUD;
+	    respuesta = Constantes.SALUD;
 	else if (this.rdbtnComercioInternacional.isSelected())
-	    respuesta = IVista.COMERCIO_INTERNACIONAL;
+	    respuesta = Constantes.COMERCIO_INTERNACIONAL;
 	else
-	    respuesta = IVista.COMERCIO_LOCAL;
+	    respuesta = Constantes.COMERCIO_LOCAL;
 	return respuesta;
     }
 
