@@ -14,7 +14,6 @@ agenciaDTO.setContrataciones(Agencia.getInstance().getContrataciones());
 agenciaDTO.setEmpleadores(Agencia.getInstance().getEmpleadores());
 agenciaDTO.setEmpleados(Agencia.getInstance().getEmpleados());
 agenciaDTO.setEstadoContratacion(Agencia.getInstance().isEstadoContratacion());
-agenciaDTO.setLimiteInferior(Agencia.getInstance().getLimiteInferior());
 agenciaDTO.setLimiteSuperior(Agencia.getInstance().getLimiteSuperior());
 
 return agenciaDTO;

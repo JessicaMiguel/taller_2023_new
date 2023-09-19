@@ -167,7 +167,7 @@ public class Agencia
 		}
 
 		for (int i = 0; i < noElegidos.size(); i++)
-			noElegidos.get(i).setPuntaje(noElegidos.get(i).getPuntaje() - 20);
+			noElegidos.get(i).setPuntaje(noElegidos.get(i).getPuntaje() + 20);
 	}
 
 	/**
@@ -510,9 +510,7 @@ public class Agencia
 			throw new ImposibleCrearEmpleadorException(Mensajes.TIPO_PERSONA_DESCONOCIDO.getValor(), nombreUsuario,
 					pass, nombreReal, telefono, tipoPersona, rubro);
 
-		if (this.empleadores.containsKey(nombreUsuario))
-			throw new NewRegisterException(Mensajes.USUARIO_REPETIDO.getValor(), nombreUsuario);
-
+		
 		Empleador empleador = new Empleador(nombreUsuario, pass, nombreReal, telefono, tipoPersona, rubro);
 		this.empleadores.put(nombreUsuario, empleador);
 		return empleador;
@@ -545,7 +543,7 @@ public class Agencia
 			this.usuarioLogeado = u;
 			this.tipoUsuario = 1;
 		} else
-			throw new NombreUsuarioException(Mensajes.USUARIO_DESCONOCIDO.getValor(), nombreUsuario);
+			throw new NombreUsuarioException(Mensajes.USUARIO_DESCONOCIDO.getValor(), null);
 		return this.usuarioLogeado;
 
 	}
