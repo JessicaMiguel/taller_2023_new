@@ -168,6 +168,7 @@ public class PanelAdmin extends PanelAgencia
 		this.setActionAndName(this.btnGatillar, Constantes.GATILLAR);
 		this.setActionAndName(this.btnPromo, Constantes.APLICAR_PROMO);
 		this.setActionAndName(this.chckbxPorPostulantes, Constantes.CHECK_BOX_LISTA_POSTULANTES);
+		this.setActionAndName(btnCambiar, Constantes.MODIFICAR_VALORES);
 
 		this.textFieldInferior.addKeyListener(this);
 		this.textFieldSuperior.addKeyListener(this);

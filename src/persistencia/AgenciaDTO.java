@@ -10,74 +10,84 @@ import modeloDatos.Usuario;
 
 public class AgenciaDTO
 {
-    private HashMap<String, EmpleadoPretenso> empleados = new HashMap<String, EmpleadoPretenso>();
-    private HashMap<String, Empleador> empleadores = new HashMap<String, Empleador>();
-    private int v1;
-    private int v2;
-    private ArrayList<Contratacion> contrataciones = new ArrayList<Contratacion>();
-    private boolean estadoContratacion = false;
-    private HashMap<Usuario, Double> comisionesUsuarios = new HashMap<Usuario, Double>();
-	
-    public HashMap<String, EmpleadoPretenso> getEmpleados()
+	private HashMap<String, EmpleadoPretenso> empleados = new HashMap<String, EmpleadoPretenso>();
+	private HashMap<String, Empleador> empleadores = new HashMap<String, Empleador>();
+	private int limiteInferior;
+	private int limiteSuperior;
+	private ArrayList<Contratacion> contrataciones = new ArrayList<Contratacion>();
+	private boolean estadoContratacion = false;
+	private HashMap<Usuario, Double> comisionesUsuarios = new HashMap<Usuario, Double>();
+
+	public HashMap<String, EmpleadoPretenso> getEmpleados()
 	{
 		return empleados;
 	}
+
 	public void setEmpleados(HashMap<String, EmpleadoPretenso> empleados)
 	{
 		this.empleados = empleados;
 	}
+
 	public HashMap<String, Empleador> getEmpleadores()
 	{
 		return empleadores;
 	}
+
 	public void setEmpleadores(HashMap<String, Empleador> empleadores)
 	{
 		this.empleadores = empleadores;
 	}
-	public int getV1()
+
+	
+
+	public int getLimiteInferior()
 	{
-		return v1;
+		return limiteInferior;
 	}
-	public void setV1(int v1)
+
+	public void setLimiteInferior(int limiteInferior)
 	{
-		this.v1 = v1;
+		this.limiteInferior = limiteInferior;
 	}
-	public int getV2()
+
+	public int getLimiteSuperior()
 	{
-		return v2;
+		return limiteSuperior;
 	}
-	public void setV2(int v2)
+
+	public void setLimiteSuperior(int limiteSuperior)
 	{
-		this.v2 = v2;
+		this.limiteSuperior = limiteSuperior;
 	}
+
 	public ArrayList<Contratacion> getContrataciones()
 	{
 		return contrataciones;
 	}
+
 	public void setContrataciones(ArrayList<Contratacion> contrataciones)
 	{
 		this.contrataciones = contrataciones;
 	}
+
 	public boolean isEstadoContratacion()
 	{
 		return estadoContratacion;
 	}
+
 	public void setEstadoContratacion(boolean estadoContratacion)
 	{
 		this.estadoContratacion = estadoContratacion;
 	}
+
 	public HashMap<Usuario, Double> getComisionesUsuarios()
 	{
 		return comisionesUsuarios;
 	}
+
 	public void setComisionesUsuarios(HashMap<Usuario, Double> comisionesUsuarios)
 	{
 		this.comisionesUsuarios = comisionesUsuarios;
 	}
 
-
-
-
 }
-
-

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="17.0.7" class="java.beans.XMLDecoder">
+<java version="19.0.1" class="java.beans.XMLDecoder">
  <object class="persistencia.AgenciaDTO" id="AgenciaDTO0">
   <void property="empleadores">
    <void method="put">
@@ -248,6 +248,12 @@
   </void>
   <void property="estadoContratacion">
    <boolean>true</boolean>
+  </void>
+  <void property="limiteInferior">
+   <int>1000</int>
+  </void>
+  <void property="limiteSuperior">
+   <int>5000</int>
   </void>
  </object>
 </java>

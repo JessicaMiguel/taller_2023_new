@@ -8,6 +8,8 @@ import excepciones.ContraException;
 import excepciones.ImposibleCrearEmpleadoException;
 import excepciones.ImposibleCrearEmpleadorException;
 import excepciones.ImposibleModificarTicketsException;
+import excepciones.LimiteInferiorRemuneracionInvalidaException;
+import excepciones.LimiteSuperiorRemuneracionInvalidaException;
 import excepciones.NewRegisterException;
 import excepciones.NombreUsuarioException;
 import modeloDatos.Usuario;
@@ -80,10 +82,9 @@ public class Controlador implements ActionListener
 			this.gatillar();
 		} else if (comando.equalsIgnoreCase(Constantes.MODIFICAR_VALORES))
 		{
-			this.modificarValorsV1V2();
+			this.modificarValorsLimitesRemuneracion();
 
-		}
-		else if (comando.equalsIgnoreCase(Constantes.SELECCIONAR_CANDIDATO))
+		} else if (comando.equalsIgnoreCase(Constantes.SELECCIONAR_CANDIDATO))
 		{
 			this.seleccionarCandidato();
 
@@ -92,44 +93,44 @@ public class Controlador implements ActionListener
 		else if (comando.equalsIgnoreCase(Constantes.APLICAR_PROMO))
 		{
 			this.aplicarPromo();
-		}
-		else if (comando.equalsIgnoreCase(Constantes.ELIMINAR_TICKET))
+		} else if (comando.equalsIgnoreCase(Constantes.ELIMINAR_TICKET))
 		{
 			this.eliminarTicket();
 		}
 
 	}
-	
-	
+
 	/**
-	 * Este método tiene como objetivo eliminar un ticket de la instancia de la clase Agencia utilizando el método eliminarTicket() de esa instancia. 
-	 * Se trata la excepción ImposibleModificarTicketsException
-	 * Luego, después de intentar eliminar el ticket, se llama al método actualizaCliente() de la vista para actualizar la interfaz de usuario del cliente.
+	 * Este método tiene como objetivo eliminar un ticket de la instancia de la
+	 * clase Agencia utilizando el método eliminarTicket() de esa instancia. Se
+	 * trata la excepción ImposibleModificarTicketsException Luego, después de
+	 * intentar eliminar el ticket, se llama al método actualizaCliente() de la
+	 * vista para actualizar la interfaz de usuario del cliente.
 	 */
 
 	private void eliminarTicket()
 	{
-	  try
-	{
-	    Agencia.getInstance().eliminarTicket();
-	} catch (ImposibleModificarTicketsException e)
-	{
-	    // TODO Auto-generated catch block
-	    this.myOptionPane.ShowMessage(e.getMessage());
-	}  
-	  this.vista.actualizaCliente();
+		try
+		{
+			Agencia.getInstance().eliminarTicket();
+		} catch (ImposibleModificarTicketsException e)
+		{
+			// TODO Auto-generated catch block
+			this.myOptionPane.ShowMessage(e.getMessage());
+		}
+		this.vista.actualizaCliente();
 	}
-	
-	
+
 	/**
-	 * Este método se encarga de seleccionar un candidato, utilizando el método setCandidato() de la instancia de usuario y obtiene el candidato de la vista 
+	 * Este método se encarga de seleccionar un candidato, utilizando el método
+	 * setCandidato() de la instancia de usuario y obtiene el candidato de la vista
 	 * utilizando el método getCandidato()
 	 */
 
 	private void seleccionarCandidato()
 	{
-	    this.usuario.setCandidato(this.vista.getCandidato());
-	    System.out.println(this.usuario+"  eligio a "+this.usuario.getCandidato());
+		this.usuario.setCandidato(this.vista.getCandidato());
+		System.out.println(this.usuario + "  eligio a " + this.usuario.getCandidato());
 	}
 
 	/**
@@ -147,15 +148,24 @@ public class Controlador implements ActionListener
 	}
 
 	/**
-	 * Se utiliza para modificar los valores de las variables V1 y V2 en el objeto
-	 * agencia.
+	 * Se utiliza para modificar los valores de las variables limiteInferior y
+	 * limiteSuperior en el objeto agencia.
 	 * 
 	 */
 
-	public void modificarValorsV1V2()
+	public void modificarValorsLimitesRemuneracion()
 	{
-		agencia.setV1(this.vista.getLimiteInferior());
-		agencia.setV2(this.vista.getLimiteSuperior());
+		System.out.println("lalala");
+		try
+		{
+			agencia.setLimitesRemuneracion(this.vista.getLimiteInferior(), this.vista.getLimiteSuperior());
+
+		} catch (LimiteInferiorRemuneracionInvalidaException | LimiteSuperiorRemuneracionInvalidaException e)
+		{
+			this.myOptionPane.ShowMessage(e.getMessage());
+
+		}
+
 	}
 
 	/**
@@ -189,26 +199,28 @@ public class Controlador implements ActionListener
 		{
 			this.myOptionPane.ShowMessage(e.getMessage());
 		}
-		
-	}
-	
-	
-	/**
-	 * Permite a los usuarios crear nuevos tickets.
-	 * El método recopila información ingresada por el usuario desde la vista.
-	 * Estos datos incluyen:
 
-	 * jornada: La jornada del trabajo.
-	 * locacion: La locación o lugar donde se llevará a cabo el trabajo.
-	 * estudios: Información sobre los estudios requeridos para el trabajo.
-	 * puesto: El tipo de puesto de trabajo.
-	 * experiencia: La experiencia previa requerida para el trabajo.
-	 * remuneracion: La remuneración ofrecida para el trabajo.
-	 * Si tipoUsuario es Empleado, intentará crear un nuevo ticket de empleado utilizando los datos recopilados. Esto se hace llamando al método crearTicketEmpleado() de la instancia de agencia. 
-	 * Si ocurre alguna excepción del tipo ImposibleModificarTicketsException, se trata.
-	 * Si tipoUsuario es Empleador intentará crear un nuevo ticket de empleador utilizando los datos recopilados. Esto se hace llamando al método crearTicketEmpleador() de la instancia de agencia. 
-	 * También maneja excepciones del tipo ImposibleModificarTicketsException
-	 * Después de crear el nuevo ticket (ya sea de empleado o empleador), se llama al método actualizaCliente() de la vista para actualizar la interfaz de usuario del cliente.
+	}
+
+	/**
+	 * Permite a los usuarios crear nuevos tickets. El método recopila información
+	 * ingresada por el usuario desde la vista. Estos datos incluyen:
+	 * 
+	 * jornada: La jornada del trabajo. locacion: La locación o lugar donde se
+	 * llevará a cabo el trabajo. estudios: Información sobre los estudios
+	 * requeridos para el trabajo. puesto: El tipo de puesto de trabajo.
+	 * experiencia: La experiencia previa requerida para el trabajo. remuneracion:
+	 * La remuneración ofrecida para el trabajo. Si tipoUsuario es Empleado,
+	 * intentará crear un nuevo ticket de empleado utilizando los datos recopilados.
+	 * Esto se hace llamando al método crearTicketEmpleado() de la instancia de
+	 * agencia. Si ocurre alguna excepción del tipo
+	 * ImposibleModificarTicketsException, se trata. Si tipoUsuario es Empleador
+	 * intentará crear un nuevo ticket de empleador utilizando los datos
+	 * recopilados. Esto se hace llamando al método crearTicketEmpleador() de la
+	 * instancia de agencia. También maneja excepciones del tipo
+	 * ImposibleModificarTicketsException Después de crear el nuevo ticket (ya sea
+	 * de empleado o empleador), se llama al método actualizaCliente() de la vista
+	 * para actualizar la interfaz de usuario del cliente.
 	 * 
 	 */
 
@@ -221,21 +233,21 @@ public class Controlador implements ActionListener
 		String experiencia = this.vista.getExperiencia();
 		int remuneracion = this.vista.getRemuneracion();
 		if (this.tipoUsuario == 0)
-		    try
-		    {
-			agencia.crearTicketEmpleado(locacion, remuneracion, jornada, puesto, experiencia, estudios, usuario);
-		    } catch (ImposibleModificarTicketsException e)
-		    {
-			this.myOptionPane.ShowMessage(e.getMessage());
-		    }
+			try
+			{
+				agencia.crearTicketEmpleado(locacion, remuneracion, jornada, puesto, experiencia, estudios, usuario);
+			} catch (ImposibleModificarTicketsException e)
+			{
+				this.myOptionPane.ShowMessage(e.getMessage());
+			}
 		else if (this.tipoUsuario == 1)
-		    try
-		    {
-			agencia.crearTicketEmpleador(locacion, remuneracion, jornada, puesto, experiencia, estudios, usuario);
-		    } catch (ImposibleModificarTicketsException e)
-		    {
-			this.myOptionPane.ShowMessage(e.getMessage());
-		    }
+			try
+			{
+				agencia.crearTicketEmpleador(locacion, remuneracion, jornada, puesto, experiencia, estudios, usuario);
+			} catch (ImposibleModificarTicketsException e)
+			{
+				this.myOptionPane.ShowMessage(e.getMessage());
+			}
 
 		this.vista.actualizaCliente();
 
@@ -281,7 +293,7 @@ public class Controlador implements ActionListener
 			} catch (NewRegisterException | ImposibleCrearEmpleadoException e)
 			{
 				this.myOptionPane.ShowMessage(e.getMessage());
-			} 
+			}
 
 		} else
 		{
@@ -292,7 +304,7 @@ public class Controlador implements ActionListener
 			} catch (NewRegisterException | ImposibleCrearEmpleadorException e)
 			{
 				this.myOptionPane.ShowMessage(e.getMessage());
-			} 
+			}
 			t = 1;
 		}
 		if (usuario != null)
@@ -376,5 +388,4 @@ public class Controlador implements ActionListener
 		this.vista = vista;
 	}
 
-	
 }

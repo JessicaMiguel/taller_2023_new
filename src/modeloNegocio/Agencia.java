@@ -10,6 +10,8 @@ import excepciones.ContraException;
 import excepciones.ImposibleCrearEmpleadoException;
 import excepciones.ImposibleCrearEmpleadorException;
 import excepciones.ImposibleModificarTicketsException;
+import excepciones.LimiteInferiorRemuneracionInvalidaException;
+import excepciones.LimiteSuperiorRemuneracionInvalidaException;
 import excepciones.NewRegisterException;
 import excepciones.NombreUsuarioException;
 import modeloDatos.Admin;
@@ -29,8 +31,8 @@ public class Agencia
 	private static Agencia instance;
 	private HashMap<String, EmpleadoPretenso> empleados = new HashMap<String, EmpleadoPretenso>();
 	private HashMap<String, Empleador> empleadores = new HashMap<String, Empleador>();
-	private int v1;
-	private int v2;
+	private int limiteInferior;
+	private int limiteSuperior;
 	private Usuario usuarioLogeado = null;
 	private int tipoUsuario = -1;
 	private ArrayList<Contratacion> contrataciones = new ArrayList<Contratacion>();
@@ -61,16 +63,21 @@ public class Agencia
 		return this.empleadores.values().iterator();
 	}
 
-	public void setV2(int limiteSuperior)
+	public void setLimitesRemuneracion(int limiteInferior, int limiteSuperior)
+			throws LimiteSuperiorRemuneracionInvalidaException, LimiteInferiorRemuneracionInvalidaException
 	{
-		this.v2 = limiteSuperior;
+		if (limiteInferior < 0)
+			throw new LimiteInferiorRemuneracionInvalidaException(Mensajes.LIMITE_REMUNERACION_NEGATIVO.getValor(),
+					this.limiteInferior, this.limiteSuperior, limiteInferior);
+		if (limiteSuperior <= this.limiteInferior)
+			throw new LimiteSuperiorRemuneracionInvalidaException(Mensajes.LIMITE_REMUNERACION_INVALIDO.getValor(),
+					this.limiteInferior, this.limiteSuperior, limiteSuperior);
+
+		this.limiteSuperior = limiteSuperior;
+		this.limiteInferior = limiteInferior;
 	}
 
-	public void setV1(int limiteInferior)
-	{
-		this.v1 = limiteInferior;
-	}
-
+	
 	/**
 	 * Dependiendo del valor del atributo estadoContratacion, este método realiza
 	 * diferentes acciones: Si estadoContratacion es verdadero, se buscan matcheos
@@ -137,8 +144,8 @@ public class Agencia
 	 * 
 	 * <b>Pre: </b> Debe haber objetos válidos y registrados en las colecciones<br>
 	 * empleadores y empleados. <br>
-	 *  <b>Post: </b> Se penaliza al empleador reduciendo su
-	 * puntaje en 20 unidades<br>
+	 * <b>Post: </b> Se penaliza al empleador reduciendo su puntaje en 20
+	 * unidades<br>
 	 */
 
 	private void penalizaEmpleadores()
@@ -163,15 +170,17 @@ public class Agencia
 			noElegidos.get(i).setPuntaje(noElegidos.get(i).getPuntaje() - 20);
 	}
 
-	
 	/**
-	 * Este método otorga premios y castigos a los usuarios que participan en el proceso de selección. 
-	 * <b>Pre: </b>Las listas de postulantes están ordenadas  <br>
-	 * <b>Post: </b> Los empleadores que tienen candidatos en su lista de postulantes reciben un premio 
-	 * de 5 puntos para su candidato principal y un castigo de -5 puntos para el último candidato de la lista.
-	 * Los empleados pretensos que tienen postulantes en su lista reciben un premio de 10 puntos para el candidato en el puesto 1.<br>
+	 * Este método otorga premios y castigos a los usuarios que participan en el
+	 * proceso de selección. <b>Pre: </b>Las listas de postulantes están ordenadas
+	 * <br>
+	 * <b>Post: </b> Los empleadores que tienen candidatos en su lista de
+	 * postulantes reciben un premio de 5 puntos para su candidato principal y un
+	 * castigo de -5 puntos para el último candidato de la lista. Los empleados
+	 * pretensos que tienen postulantes en su lista reciben un premio de 10 puntos
+	 * para el candidato en el puesto 1.<br>
 	 */
-	
+
 	public void calculaPremiosCastigosAsignaciones()
 	{
 		Iterator<Empleador> itEmpleadores = this.empleadores.values().iterator();
@@ -226,20 +235,23 @@ public class Agencia
 			}
 		}
 	}
-	
-	
+
 	/**
-	 * Está relacionado con la ocurrencia de un "match" entre un empleador y un empleado pretenso, 
-	 * lo que implica que un empleado potencial ha sido seleccionado por un empleador. 
-	 * Realiza ajustes en los puntajes y las comisiones, y marca a ambos usuarios como no disponibles para futuros matches o contrataciones.
-	 * <b>Pre: </b> Empleado y empleador deben ser válidos y estar registrados y logueados en el sistema <br>
-	 * <b>Post: </b> Crea una nueva instancia de Contratacion que representa la contratación o emparejamiento entre el empleador y el empleado.
-	 * Incrementa el puntaje del empleado en 10 puntos 
-	 * Incrementa el puntaje del empleador en 50 puntos 
-	 * Calcula las comisiones para el empleado y el empleador en función del Ticket asociado al empleador.
-	 * Empleado y empleador ya no están disponibles para futuros emparejamientos o contrataciones.<br>
+	 * Está relacionado con la ocurrencia de un "match" entre un empleador y un
+	 * empleado pretenso, lo que implica que un empleado potencial ha sido
+	 * seleccionado por un empleador. Realiza ajustes en los puntajes y las
+	 * comisiones, y marca a ambos usuarios como no disponibles para futuros matches
+	 * o contrataciones. <b>Pre: </b> Empleado y empleador deben ser válidos y estar
+	 * registrados y logueados en el sistema <br>
+	 * <b>Post: </b> Crea una nueva instancia de Contratacion que representa la
+	 * contratación o emparejamiento entre el empleador y el empleado. Incrementa el
+	 * puntaje del empleado en 10 puntos Incrementa el puntaje del empleador en 50
+	 * puntos Calcula las comisiones para el empleado y el empleador en función del
+	 * Ticket asociado al empleador. Empleado y empleador ya no están disponibles
+	 * para futuros emparejamientos o contrataciones.<br>
+	 * 
 	 * @param empleador: Objeto empleador con quien el empleado pretenso hace match
-	 * @param empleado: Objeto empleado con quien el empleador hace match
+	 * @param empleado:  Objeto empleado con quien el empleador hace match
 	 */
 
 	public void match(Empleador empleador, EmpleadoPretenso empleado)
@@ -255,15 +267,16 @@ public class Agencia
 		empleador.setTicket(null);
 
 	}
-	
-	
-	
+
 	/**
-	 * Este método se encarga de calcular y asignar listas de postulantes a los Empleadores y EmpleadoPretenso en 
-	 * función de sus Ticket y las comparaciones de puntajes entre ellos.
-	 * <b>Pre: </b> Listas de empleados y empleadores con elementos válidos  <br>
-	 * <b>Post: </b>Establece la lista de EmpleadoPretenso ordenados de mayor a menor como la lista de postulantes para el Empleador
-	 * Establece una lista de Empleadores ordenada por puntaje de mayor a menor de compatibilidad y la establece como la lista de postulantes para ese EmpleadoPretenso.<br>
+	 * Este método se encarga de calcular y asignar listas de postulantes a los
+	 * Empleadores y EmpleadoPretenso en función de sus Ticket y las comparaciones
+	 * de puntajes entre ellos. <b>Pre: </b> Listas de empleados y empleadores con
+	 * elementos válidos <br>
+	 * <b>Post: </b>Establece la lista de EmpleadoPretenso ordenados de mayor a
+	 * menor como la lista de postulantes para el Empleador Establece una lista de
+	 * Empleadores ordenada por puntaje de mayor a menor de compatibilidad y la
+	 * establece como la lista de postulantes para ese EmpleadoPretenso.<br>
 	 * 
 	 */
 
@@ -323,13 +336,16 @@ public class Agencia
 		}
 
 	}
-	
+
 	/**
-	 * Tiene como objetivo guardar la información de una agencia en un archivo utilizando un mecanismo de persistencia.
-	 * Este archivo contendrá la información necesaria para restaurar la agencia en un estado similar en el futuro si es necesario.
-	 * <b>Pre: </b> Nombre de archivo válido  <br>
+	 * Tiene como objetivo guardar la información de una agencia en un archivo
+	 * utilizando un mecanismo de persistencia. Este archivo contendrá la
+	 * información necesaria para restaurar la agencia en un estado similar en el
+	 * futuro si es necesario. <b>Pre: </b> Nombre de archivo válido <br>
 	 * <b>Post: </b> Se guarda el estado de la agencia en el archivo <br>
-	 * @param nombreArchivo String, con el nombre del archivo donde se almacenará la agencia
+	 * 
+	 * @param nombreArchivo String, con el nombre del archivo donde se almacenará la
+	 *                      agencia
 	 * @throws IOException Se lanza en caso de error de entrada/salida
 	 */
 
@@ -342,22 +358,32 @@ public class Agencia
 			persistencia.cerrarOutput();
 		}
 	}
-	
-	
+
 	/**
-	 * Se encarga de crear un nuevo ticket para un empleado con los datos enviados por parámetros
-	 * @param locacion String con la locacion del empleado
+	 * Se encarga de crear un nuevo ticket para un empleado con los datos enviados
+	 * por parámetros
+	 * 
+	 * @param locacion     String con la locacion del empleado
 	 * @param remuneracion int con la remuneracion pretendida por el empleado
-	 * @param jornada String con la jornada de preferencia del empleado
-	 * @param puesto String tipo de puesto al que aspira el empleado
-	 * @param experiencia String experiencia del empleado
-	 * @param estudios String estudios que posee el empleado
-	 * @param usuario objeto Usuario del ticket
-	 * @throws ImposibleModificarTicketsException lanza una excepción ImposibleModificarTicketsException si el estado de contratación no está en un estado válido 
-	 * <b>Pre: </b> La agencia debe estar en un estado en el que se permita la creación de tickets 
-	 * El usuario debe ser un empleado (no un empleador) y no tener un ticket activo en ese momento. 
-	 * Parámetros válidos <br>
-	 * <b>Post: </b> El usuario tendrá un nuevo ticket asociado con la información proporcionada. <br>
+	 * @param jornada      String con la jornada de preferencia del empleado
+	 * @param puesto       String tipo de puesto al que aspira el empleado
+	 * @param experiencia  String experiencia del empleado
+	 * @param estudios     String estudios que posee el empleado
+	 * @param usuario      objeto Usuario del ticket
+	 * @throws ImposibleModificarTicketsException lanza una excepción
+	 *                                            ImposibleModificarTicketsException
+	 *                                            si el estado de contratación no
+	 *                                            está en un estado válido <b>Pre:
+	 *                                            </b> La agencia debe estar en un
+	 *                                            estado en el que se permita la
+	 *                                            creación de tickets El usuario
+	 *                                            debe ser un empleado (no un
+	 *                                            empleador) y no tener un ticket
+	 *                                            activo en ese momento. Parámetros
+	 *                                            válidos <br>
+	 *                                            <b>Post: </b> El usuario tendrá un
+	 *                                            nuevo ticket asociado con la
+	 *                                            información proporcionada. <br>
 	 *
 	 */
 
@@ -370,21 +396,33 @@ public class Agencia
 			this.eliminarTicket();
 		usuario.setTicket(new Ticket(locacion, remuneracion, jornada, puesto, experiencia, estudios));
 	}
-	
+
 	/**
-	 * Se encarga de crear un nuevo ticket para un empleador 
-	 * @param locacion String locacion de la oferta del empleador
+	 * Se encarga de crear un nuevo ticket para un empleador
+	 * 
+	 * @param locacion     String locacion de la oferta del empleador
 	 * @param remuneracion int remuneración ofrecida por el empleador
-	 * @param jornada String jornada del puesto de trabajo que abre el empleador
-	 * @param puesto String tipo de puesto de la posición
-	 * @param experiencia String experiencia requerida para el puesto
-	 * @param estudios String estudios requeridos para el puesto
-	 * @param usuario objeto Usuario a quien se le creará el ticket
-	 * @throws ImposibleModificarTicketsException lanza una excepción ImposibleModificarTicketsException si el estado de contratación no está en un estado válido 
-	 * <b>Pre: </b> La agencia debe estar en un estado en el que se permita la creación de tickets 
-	 * El usuario debe ser un empleador (no un empleado) y no tener un ticket activo en ese momento.
-	 * Parámetros válidos  <br>
-	 * <b>Post: </b> El usuario (empleador) tendrá un nuevo ticket asociado con la información proporcionada.
+	 * @param jornada      String jornada del puesto de trabajo que abre el
+	 *                     empleador
+	 * @param puesto       String tipo de puesto de la posición
+	 * @param experiencia  String experiencia requerida para el puesto
+	 * @param estudios     String estudios requeridos para el puesto
+	 * @param usuario      objeto Usuario a quien se le creará el ticket
+	 * @throws ImposibleModificarTicketsException lanza una excepción
+	 *                                            ImposibleModificarTicketsException
+	 *                                            si el estado de contratación no
+	 *                                            está en un estado válido <b>Pre:
+	 *                                            </b> La agencia debe estar en un
+	 *                                            estado en el que se permita la
+	 *                                            creación de tickets El usuario
+	 *                                            debe ser un empleador (no un
+	 *                                            empleado) y no tener un ticket
+	 *                                            activo en ese momento. Parámetros
+	 *                                            válidos <br>
+	 *                                            <b>Post: </b> El usuario
+	 *                                            (empleador) tendrá un nuevo ticket
+	 *                                            asociado con la información
+	 *                                            proporcionada.
 	 *
 	 */
 
@@ -398,21 +436,25 @@ public class Agencia
 		usuario.setTicket(new Ticket(locacion, remuneracion, jornada, puesto, experiencia, estudios));
 
 	}
-	
-	
+
 	/**
 	 * Se encarga de registrar un nuevo empleado
+	 * 
 	 * @param nombreUsuario String con el nombre de usuario del empleado
-	 * @param pass String password generada para el empleado
-	 * @param nombreReal String Nombre real del empleado que se está registrando
-	 * @param apellido String con el apellido del empleado que está registrando
-	 * @param telefono String con el telefono del empleado
-	 * @param edad int con la edad del empleado que se está registrando
-	 * @return objeto Usuario que es el empleado registrado 
-	 * @throws NewRegisterException se lanza para indicar que el nombre de usuario ya está en uso.
-	 * @throws ImposibleCrearEmpleadoException Se lanza en caso de que nombreUsuario, pass, nombreReal, apellido, telefono sean nulos
-	 * <b>Post: </b> Se registrará un nuevo empleado en el sistema  <br>
-	 */ 
+	 * @param pass          String password generada para el empleado
+	 * @param nombreReal    String Nombre real del empleado que se está registrando
+	 * @param apellido      String con el apellido del empleado que está registrando
+	 * @param telefono      String con el telefono del empleado
+	 * @param edad          int con la edad del empleado que se está registrando
+	 * @return objeto Usuario que es el empleado registrado
+	 * @throws NewRegisterException            se lanza para indicar que el nombre
+	 *                                         de usuario ya está en uso.
+	 * @throws ImposibleCrearEmpleadoException Se lanza en caso de que
+	 *                                         nombreUsuario, pass, nombreReal,
+	 *                                         apellido, telefono sean nulos
+	 *                                         <b>Post: </b> Se registrará un nuevo
+	 *                                         empleado en el sistema <br>
+	 */
 
 	public Usuario registroEmpleado(String nombreUsuario, String pass, String nombreReal, String apellido,
 			String telefono, int edad) throws NewRegisterException, ImposibleCrearEmpleadoException
@@ -428,20 +470,32 @@ public class Agencia
 		System.out.println(empleado + " registrado");
 		return empleado;
 	}
-	
+
 	/**
 	 * Se encarga de registrar un nuevo empleador.
-	 * @param nombreUsuario String nombre de usuario para el empleador que se quiere registrar
-	 * @param pass String password para el empleador que se está registrando
-	 * @param nombreReal String nombre real del empleador que se está registrando
-	 * @param telefono String telefono del empleador que se está registrando
-	 * @param tipoPersona String tipo de persona: Fisica o Juridica para el empleador que se está registrando
-	 * @param rubro String rubro del empleador que se está registrando
+	 * 
+	 * @param nombreUsuario String nombre de usuario para el empleador que se quiere
+	 *                      registrar
+	 * @param pass          String password para el empleador que se está
+	 *                      registrando
+	 * @param nombreReal    String nombre real del empleador que se está registrando
+	 * @param telefono      String telefono del empleador que se está registrando
+	 * @param tipoPersona   String tipo de persona: Fisica o Juridica para el
+	 *                      empleador que se está registrando
+	 * @param rubro         String rubro del empleador que se está registrando
 	 * @return Objeto usuario con el empleador registrado
-	 * @throws NewRegisterException Se lanza en caso de que  ya exista un empleador registrado con el mismo nombreUsuario.
-	 * @throws ImposibleCrearEmpleadorException lanza una excepción ImposibleCrearEmpleadorException en caso de que nombreUsuario, pass, nombreReal, telefono, tipoPersona, o rubro sean nulos
-	 * o en caso de que el tipo de persona no sea "JURIDICA" ni "FISICA"
-	 * <b>Post: </b> Se registrará un nuevo empleador en el sistema  <br> 
+	 * @throws NewRegisterException             Se lanza en caso de que ya exista un
+	 *                                          empleador registrado con el mismo
+	 *                                          nombreUsuario.
+	 * @throws ImposibleCrearEmpleadorException lanza una excepción
+	 *                                          ImposibleCrearEmpleadorException en
+	 *                                          caso de que nombreUsuario, pass,
+	 *                                          nombreReal, telefono, tipoPersona, o
+	 *                                          rubro sean nulos o en caso de que el
+	 *                                          tipo de persona no sea "JURIDICA" ni
+	 *                                          "FISICA" <b>Post: </b> Se registrará
+	 *                                          un nuevo empleador en el sistema
+	 *                                          <br>
 	 */
 
 	public Usuario registroEmpleador(String nombreUsuario, String pass, String nombreReal, String telefono,
@@ -521,7 +575,7 @@ public class Agencia
 	public void cargarAgencia(String nombreArchivo) throws IOException, ClassNotFoundException
 	{
 		this.persistencia.abrirInput(nombreArchivo);
-		AgenciaDTO agenciaDTO=(AgenciaDTO) this.persistencia.leer();
+		AgenciaDTO agenciaDTO = (AgenciaDTO) this.persistencia.leer();
 		UtilPersistencia.agenciaFromAgenciaDTO(agenciaDTO);
 	}
 
@@ -629,14 +683,14 @@ public class Agencia
 		this.contrataciones = coincidencias;
 	}
 
-	public int getV1()
+	public int getLimiteInferior()
 	{
-		return v1;
+		return limiteInferior;
 	}
 
-	public int getV2()
+	public int getLimiteSuperior()
 	{
-		return v2;
+		return limiteSuperior;
 	}
 
 	public boolean isEstadoContratacion()

@@ -1,4 +1,3 @@
-/controlador/
 /excepciones/
 /main/
 /modeloDatos/
@@ -6,3 +5,4 @@
 /persistencia/
 /util/
 /vista/
+/controlador/
