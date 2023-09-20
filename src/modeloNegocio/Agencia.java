@@ -515,6 +515,18 @@ public class Agencia
 		this.empleadores.put(nombreUsuario, empleador);
 		return empleador;
 	}
+	
+	/**
+	 * Se encarga de realizar el inicio de sesión de un usuario en la aplicación, ya sean empleados, empleadores o administradores
+	 * @param nombreUsuario String: nombre de usuario de quien se quiere loguear
+	 * @param pass String: contraseña del usuario que se quiere loguear
+	 * @return Se retorna un objeto Usuario con el objeto usuario
+	 * @throws ContraException si la contraseña no es correcta se lanza una excepción del tipo ContraException
+	 * @throws NombreUsuarioException si no se encontró un empleado, un empleador o un administrador con el nombreUsuario proporcionado, 
+	 * se lanza una excepción NombreUsuarioException
+	 * <b>Pre: </b> nombre de usuario y contraseña distintos de null <br>
+	 * <b>Post: </b> Si el inicio de sesión es exitoso, el usuario quedará logeado en la aplicación  <br>
+	 */
 
 	public Usuario login(String nombreUsuario, String pass) throws ContraException, NombreUsuarioException
 	{
@@ -553,6 +565,16 @@ public class Agencia
 		if (!u.getPassword().equals(pass))
 			throw new ContraException(Mensajes.PASS_ERRONEO.getValor(), u, pass);
 	}
+	
+	
+	/**
+	 * Busca la contratación asociada a un Empleador específico en la lista de contrataciones de la agencia.
+	 * 
+	 * @param empleador objeto Empleador de quien se quiere obtener la contratación.
+	 * @return objeto Usuario con la contratación.
+	 * <b>Pre: </b> empleador distinto de null <br>
+	 * <b>Post: </b> Se obtiene la contratación  <br>
+	 */
 
 	public Usuario getContratacionEmpleador(Empleador empleador)
 	{
@@ -569,6 +591,15 @@ public class Agencia
 	{
 		return this.comisionesUsuarios.get(usuario);
 	}
+	
+	/**
+	 * Se encarga de cargar una instancia de la clase Agencia desde un archivo serializado 
+	 * @param nombreArchivo String con el nombre del archivo
+	 * @throws IOException  Esta excepción se lanza cuando ocurren problemas durante la operación de lectura del archivo
+	 * @throws ClassNotFoundException  Esta excepción se lanza si la clase AgenciaDTO no se encuentra en el parh durante la deserialización del objeto.
+	 * <b>Pre: </b> El método debe recibir el nombre de un archivo válido  <br>
+	 * <b>Post: </b>La instancia de la clase Agencia se actualizará con los datos cargados desde el archivo especificado  <br>
+	 */
 
 	public void cargarAgencia(String nombreArchivo) throws IOException, ClassNotFoundException
 	{
@@ -576,6 +607,14 @@ public class Agencia
 		AgenciaDTO agenciaDTO = (AgenciaDTO) this.persistencia.leer();
 		UtilPersistencia.agenciaFromAgenciaDTO(agenciaDTO);
 	}
+	/**
+	 * Busca la contratación asociada a un EmpleadoPretenso específico en la lista de contrataciones de la agencia.
+	 * @param ep Objeto EmpleadoPretenso de quien se quiere obtener la contratación
+	 * @return objeto usuario con el Empleador encontrado si no se encontró ninguna contratación que 
+	 * involucre al EmpleadoPretenso especificado.
+	 * <b>Pre: </b> empleado distinto de null <br>
+	 * <b>Post: </b> Se obtiene la contratación  <br>
+	 */
 
 	public Usuario getContratacionEmpleadoPretenso(EmpleadoPretenso ep)
 	{
@@ -593,6 +632,18 @@ public class Agencia
 
 		return this.tipoUsuario;
 	}
+	
+	
+	/**
+	 * El método aplicaPromo se utiliza para seleccionar y beneficiar a un cliente específico (ya sea un Empleador o un EmpleadoPretenso)
+	 * @param promoPorListaDePostulantes Este parámetro es un booleano que controla el tipo de promoción que se aplicará.
+	 * @return objeto Usuario En resumen, el método aplicaPromo se utiliza para seleccionar y beneficiar a un cliente específico 
+	 * (ya sea un Empleador o un EmpleadoPretenso)
+	 * <b>Pre: </b> promoPorListaDePostulantes es true o false <br>
+	 * <b>Post: </b>Si promoPorListaDePostulantes es true, la promoción se basará en el tamaño de las listas de postulantes de los Empleadores y EmpleadoPretenso.  
+	 * Si promoPorListaDePostulantes es false, se basará simplemente en la cantidad total de Empleadores y EmpleadoPretenso sin considerar las listas de postulantes
+	 * <br>
+	 */
 
 	public Usuario aplicaPromo(boolean promoPorListaDePostulantes)
 	{
@@ -643,6 +694,11 @@ public class Agencia
 		return clienteBeneficiado;
 
 	}
+	/**
+	 * Se utiliza para cerrar la sesión de un usuario en la aplicación.
+	 * <b>Post: </b> Después de ejecutar el método, no habrá un usuario logeado en la aplicación  <br>
+	 * 
+	 */
 
 	public void cerrarSesion()
 	{

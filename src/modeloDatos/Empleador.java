@@ -29,6 +29,16 @@ public class Empleador extends Usuario
 		this.rubro = rubro;
 		this.tipo_persona = tipo_persona;
 	}
+	
+	
+	/**
+	 * Este método se utiliza para calcular la comisión que un usuario debe recibir según el tipo de puesto en un Ticket y su  puntaje. 
+	 * 
+	 * <b>Pre: </b> El método requiere un objeto Ticket válido como entrada para realizar los cálculos de comisión. <br>
+	 * <b>Post: </b> Aplica un factor de descuento a la remuneración en función del rubro de la empresa del usuario. Los descuentos varían según el rubro: 0.8 para comercio internacional, 0.7 para comercio local y 0.6 para salud.  <br>
+	 * @return double con el valor de la comisión
+	 * @param ticket objeto Ticket de donde se obtiene el rubro comercio internacional, comercio local o comercio local
+	 */
 
 	@Override
 	public double calculaComision(Ticket ticket)

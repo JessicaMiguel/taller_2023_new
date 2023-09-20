@@ -46,6 +46,15 @@ public class EmpleadoPretenso extends Usuario
 	{
 		return super.toString() + "  apellido=" + apellido + ", edad=" + edad;
 	}
+	
+	/**
+	 * Este método se utiliza para calcular la comisión que un usuario debe recibir según el tipo de puesto en un Ticket y su  puntaje. 
+	 * 
+	 * <b>Pre: </b> El método requiere un objeto Ticket válido como entrada para realizar los cálculos de comisión. <br>
+	 * <b>Post: </b> Asigna un valor de descuento basado en el tipo de puesto: 0.8 para junior, 0.9 para senior y 1 para management.  <br>
+	 * @return double con el valor de la comisión
+	 * @param ticket objeto Ticket de donde se obtiene ell tipo de puesto junior, senior o management
+	 */
 
 	@Override
 	public double calculaComision(Ticket ticket)
