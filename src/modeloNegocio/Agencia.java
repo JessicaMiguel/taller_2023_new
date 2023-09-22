@@ -120,7 +120,9 @@ public class Agencia
 	 * empleados. El propósito de este método es "limpiar" las listas de postulantes
 	 * de los empleadores y empleados pretensos, lo que implica eliminar todas las
 	 * conexiones entre candidatos y puestos de trabajo después de una ronda de
-	 * contratación <b>Post: </b> Prepara el sistema para una nueva ronda de
+	 * contratación 
+	 * <b>Pre: </b> Debe haber objetos válidos y registrados en las colecciones<br>
+	 * <b>Post: </b> Prepara el sistema para una nueva ronda de
 	 * contratación donde los candidatos pueden postularse nuevamente a nuevos
 	 * puestos.<br>
 	 * 

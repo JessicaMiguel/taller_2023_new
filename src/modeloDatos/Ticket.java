@@ -156,6 +156,16 @@ public class Ticket
 		return "Ticket [locacion=" + locacion + ", remuneracion=" + remuneracion + ", jornada=" + jornada + ", puesto="
 				+ puesto + ", experiencia=" + experiencia + ", estudios=" + estudios + "]";
 	}
+	
+	/**
+	 * Calcula y devuelve un valor numérico que representa la comparación entre la locación (ubicación) del trabajo 
+	 * descrito en el objeto Ticket actual y el objeto Ticket pasado como parámetro (otro).
+	 * 
+	 * @param otro Objeto Ticket con que se compara
+	 * @return double con el valor de la comparación en función de lo especificado en el documento funcional
+	 * <b>Pre: </b> El ticket pasado por parámetro debe ser válido <br>
+	 * <b>Post: </b> Se obtiene el valor de la comparación<br>
+	 */
 
 	public double getComparacionLocacion(Ticket otro)
 	{
@@ -163,6 +173,15 @@ public class Ticket
 		int j = Ticket.hashLocacion.get(otro.locacion);
 		return matrizLocacion[i][j];
 	}
+	/**
+	 * Calcula y devuelve un valor numérico que representa la comparación entre la jornada del trabajo 
+	 * descrito en el objeto Ticket actual y el objeto Ticket pasado como parámetro (otro).
+	 * 
+	 * @param otro Objeto Ticket con que se compara
+	 * @return double con el valor de la comparación en función de lo especificado en el documento funcional
+	 * <b>Pre: </b> El ticket pasado por parámetro debe ser válido <br>
+	 * <b>Post: </b> Se obtiene el valor de la comparación<br>
+	 */
 
 	public double getComparacionJornada(Ticket otro)
 	{
@@ -170,6 +189,16 @@ public class Ticket
 		int j = Ticket.hashJornada.get(otro.jornada);
 		return matrizJornada[i][j];
 	}
+	
+	/**
+	 * Calcula y devuelve un valor numérico que representa la comparación entre el puesto del trabajo 
+	 * descrito en el objeto Ticket actual y el objeto Ticket pasado como parámetro (otro).
+	 * 
+	 * @param otro Objeto Ticket con que se compara
+	 * @return double con el valor de la comparación en función de lo especificado en el documento funcional
+	 * <b>Pre: </b> El ticket pasado por parámetro debe ser válido <br>
+	 * <b>Post: </b> Se obtiene el valor de la comparación<br>
+	 */
 
 	public double getComparacionPuesto(Ticket otro)
 	{
@@ -177,6 +206,16 @@ public class Ticket
 		int j = Ticket.hashPuesto.get(otro.puesto);
 		return matrizPuesto[i][j];
 	}
+	
+	/**
+	 * Calcula y devuelve un valor numérico que representa la comparación entre los estudios del trabajo 
+	 * descrito en el objeto Ticket actual y el objeto Ticket pasado como parámetro (otro).
+	 * 
+	 * @param otro Objeto Ticket con que se compara
+	 * @return double con el valor de la comparación en función de lo especificado en el documento funcional
+	 * <b>Pre: </b> El ticket pasado por parámetro debe ser válido <br>
+	 * <b>Post: </b> Se obtiene el valor de la comparación<br>
+	 */
 
 	public double getComparacionEstudios(Ticket otro)
 	{
@@ -185,6 +224,17 @@ public class Ticket
 		return matrizEstudios[i][j];
 
 	}
+	
+	
+	/**
+	 * Calcula y devuelve un valor numérico que representa la comparación entre la experiencia del trabajo 
+	 * descrito en el objeto Ticket actual y el objeto Ticket pasado como parámetro (otro).
+	 * 
+	 * @param otro Objeto Ticket con que se compara
+	 * @return double con el valor de la comparación en función de lo especificado en el documento funcional
+	 * <b>Pre: </b> El ticket pasado por parámetro debe ser válido <br>
+	 * <b>Post: </b> Se obtiene el valor de la comparación<br>
+	 */
 
 	public double getComparacionExperiencia(Ticket otro)
 	{
@@ -193,6 +243,16 @@ public class Ticket
 		return matrizExperiencia[i][j];
 
 	}
+	
+	/**
+	 * Calcula y devuelve un valor numérico que representa la comparación entre la remuneración del trabajo 
+	 * descrito en el objeto Ticket actual y el objeto Ticket pasado como parámetro (otro).
+	 * 
+	 * @param otro Objeto Ticket con que se compara
+	 * @return double con el valor de la comparación en función de lo especificado en el documento funcional
+	 * <b>Pre: </b> El ticket pasado por parámetro debe ser válido <br>
+	 * <b>Post: </b> Se obtiene el valor de la comparación<br>
+	 */
 
 	public double getComparacionRemuneracion(Ticket otro)
 	{
@@ -207,6 +267,15 @@ public class Ticket
  
 		return matrizRemuneracion[i][j];
 	}
+	
+	/**
+	 * calcula una puntuación total de comparación entre el objeto Ticket actual y otro objeto Ticket que se pasa como parámetro (otro). 
+	 * Esta puntuación se calcula sumando las puntuaciones de comparación individual para diferentes atributos como estudios, experiencia, 
+	 * locación, puesto, remuneración y carga horaria.
+	 * 
+	 * @param otro Objeto Ticket con que se compara
+	 * @return double con el valor de la comparación
+	 */
 
 	public double getComparacionTotal(Ticket otro)
 	{

@@ -14,6 +14,13 @@ import modeloDatos.Usuario;
 import modeloNegocio.Agencia;
 import util.Constantes;
 
+
+/**
+ *  Clase que representa la Ventana en la aplicaicón. En cada sesión, las ventanas aparecen limpias.
+ * @author
+ *
+ */
+
 public class Ventana extends JFrame implements IVista, ActionListener,WindowListener
 {
 

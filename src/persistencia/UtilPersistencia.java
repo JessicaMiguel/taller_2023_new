@@ -19,6 +19,17 @@ agenciaDTO.setLimiteSuperior(Agencia.getInstance().getLimiteSuperior());
 return agenciaDTO;
 }
 
+/**
+ * Este método permite convertir un objeto Agencia en un objeto AgenciaDTO para
+ * facilitar su almacenamiento o transferencia a través de una capa de persistencia.
+ * El método copia los del objeto Agencia en el objeto AgenciaDTO. 
+ * Estos atributos incluyen cosas como las comisiones para usuarios, 
+ * la cantidad de contrataciones, la lista de empleadores, la lista de empleados, 
+ * el estado de contratación, el límite superior y el inferior de remuneración.
+ * 
+ * @param agenciaDTO objeto AgennciaDTO
+ */
+
 public static void agenciaFromAgenciaDTO(AgenciaDTO agenciaDTO) 
 {
 	Agencia.getInstance().setComisionesUsuarios(agenciaDTO.getComisionesUsuarios());
