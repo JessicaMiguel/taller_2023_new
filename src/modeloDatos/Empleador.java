@@ -2,10 +2,14 @@ package modeloDatos;
 
 import util.Constantes;
 
+/**
+ * Clase que representa un Usuario de tipo Empleador.
+ * <b>Todos los setters tienen como precondición, que su parametro es diferente de null. Rubro y tipo_persona son de los tipos esperados.</b>
+ */
 public class Empleador extends Usuario
 {
 	private String rubro;
-	private String tipo_persona;
+	private String tipoPersona;
 
 	public String getRubro()
 	{
@@ -17,25 +21,44 @@ public class Empleador extends Usuario
 		super();
 	}
 
-	public String getTipo_persona()
+	public String getTipoPersona()
 	{
-		return tipo_persona;
+		return tipoPersona;
 	}
 
+	public void setRubro(String rubro)
+	{
+	    this.rubro = rubro;
+	}
+
+	public void setTipoPersona(String tipoPersona)
+	{
+	    this.tipoPersona = tipoPersona;
+	}
+
+	
+	/**
+	 * <b>pre:</b> los parametros son diferentes de null, rubro y tipoPersona de los tipos esperados (contemplados en la clase Constantes)
+	 * @param usserName
+	 * @param password
+	 * @param realName
+	 * @param telefono
+	 * @param rubro
+	 * @param tipoPersona
+	 */
 	public Empleador(String usserName, String password, String realName, String telefono, String rubro,
-			String tipo_persona)
+			String tipoPersona)
 	{
 		super(usserName, password, telefono, realName);
 		this.rubro = rubro;
-		this.tipo_persona = tipo_persona;
+		this.tipoPersona = tipoPersona;
 	}
 	
 	
 	/**
-	 * Este método se utiliza para calcular la comisión que un usuario debe recibir según el tipo de puesto en un Ticket y su  puntaje. 
-	 * 
+	 * Este método se utiliza para calcular la comisión que un usuario debe recibir según el tipo de puesto en un Ticket y su  puntaje  (ver detalles de calculo de comision). 
 	 * <b>Pre: </b> El método requiere un objeto Ticket válido como entrada para realizar los cálculos de comisión. <br>
-	 * <b>Post: </b> Aplica un factor de descuento a la remuneración en función del rubro de la empresa del usuario. Los descuentos varían según el rubro: 0.8 para comercio internacional, 0.7 para comercio local y 0.6 para salud.  <br>
+	 * 
 	 * @return double con el valor de la comisión
 	 * @param ticket objeto Ticket de donde se obtiene el rubro comercio internacional, comercio local o comercio local
 	 */

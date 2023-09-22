@@ -4,6 +4,10 @@ import java.util.GregorianCalendar;
 
 import util.Constantes;
 
+/**
+ * Clase que representa una contratacion entre un empleado y un empleador con su correspondiente fecha de creacion
+ *<b>Todos los setters tienen como precondición , que su parametro es diferente de null</b>
+ */
 public class Contratacion
 {
 	private EmpleadoPretenso empleado;
@@ -14,6 +18,12 @@ public class Contratacion
 	{
 	}
 
+	/**
+	 * Construye una contratacion con el empleado y el empledor pasados por parametro y la fecha actual
+	 * <b>pre:</b> los parametros son diferentes de null
+	 * @param empleador 
+	 * @param empleado
+	 */
 	public Contratacion( Empleador empleador,EmpleadoPretenso empleado)
 	{
 		super();

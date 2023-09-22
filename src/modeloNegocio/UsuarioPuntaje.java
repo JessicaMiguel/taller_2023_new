@@ -4,6 +4,10 @@ import modeloDatos.Usuario;
 
 
 
+/**
+ * Clase que representa un Usuario con su corespondiente puntaje obtenido en una busqueda laboral
+ * El objeto es Comparable en forma descendente por su puntaje obtenido.
+ */
 public class UsuarioPuntaje implements Comparable
 {
 private double puntaje;
@@ -15,6 +19,11 @@ public UsuarioPuntaje() {}
 
 
 
+/**
+ * <b>Pre:</b> Usuario es diferente de null
+ * @param puntaje
+ * @param usuario
+ */
 public UsuarioPuntaje(double puntaje, Usuario usuario)
 {
     super();
@@ -36,6 +45,10 @@ public Usuario getUsuario()
 {
 	return usuario;
 }
+/**
+ * <b>Pre:</b> Usuario es diferente de null
+ * @param usuario
+ */
 public void setUsuario(Usuario usuario)
 {
 	this.usuario = usuario;

@@ -2,11 +2,24 @@ package modeloDatos;
 
 import util.Constantes;
 
+/**
+ * Clase que representa un usuario pretenso
+ * <b>Todos los setters tienen como precondición , que su parametro es diferente de null</b>
+ */
 public class EmpleadoPretenso extends Usuario
 {
 	private String apellido;
 	private int edad;
 
+	/**
+	 * <b>pre:</b> Los parámetros String son distintos de null, la edad es mayor que cero.
+	 * @param usserName
+	 * @param password
+	 * @param realName
+	 * @param telefono
+	 * @param apellido
+	 * @param edad
+	 */
 	public EmpleadoPretenso(String usserName, String password, String realName, String telefono, String apellido,
 			int edad)
 	{
@@ -38,7 +51,6 @@ public class EmpleadoPretenso extends Usuario
 	public EmpleadoPretenso()
 	{
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -48,10 +60,8 @@ public class EmpleadoPretenso extends Usuario
 	}
 	
 	/**
-	 * Este método se utiliza para calcular la comisión que un usuario debe recibir según el tipo de puesto en un Ticket y su  puntaje. 
-	 * 
-	 * <b>Pre: </b> El método requiere un objeto Ticket válido como entrada para realizar los cálculos de comisión. <br>
-	 * <b>Post: </b> Asigna un valor de descuento basado en el tipo de puesto: 0.8 para junior, 0.9 para senior y 1 para management.  <br>
+	 * Este método se utiliza para calcular la comisión que un usuario debe recibir según el tipo de puesto en un Ticket y su  puntaje (ver detalles de calculo de comision). 
+	 * <b>Pre: </b> El método requiere un objeto Ticket válido como entrada para realizar los cálculos de comisión. (ver detalles) <br>
 	 * @return double con el valor de la comisión
 	 * @param ticket objeto Ticket de donde se obtiene ell tipo de puesto junior, senior o management
 	 */
@@ -69,7 +79,7 @@ public class EmpleadoPretenso extends Usuario
 			descuento = 1;
 
 		descuento -= 0.01 * this.getPuntaje();
-		// TODO Auto-generated method stub
+		
 		return ticket.getRemuneracion() * descuento;
 	}
 

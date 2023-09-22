@@ -20,6 +20,31 @@ import vista.IVista;
 import vista.MyJOptionPane;
 import vista.Ventana;
 
+/**
+ * 
+ * Es el controlador de eventos que responde a diferentes acciones realizadas
+ * por el usuario en la interfaz gráfica de la aplicación. Realiza acciones como
+ * el inicio de sesión, registro, creación de tickets, activación de rondas de
+ * contrataciones y otras acciones relacionadas con la lógica de la aplicación.
+ * LOGIN: Cuando se recibe este comando, el método login se llama para manejar
+ * el proceso de inicio de sesión. La lógica de inicio de sesión se ejecuta en
+ * el método login. REG_BUTTON_REGISTRAR: Este comando está relacionado con el
+ * proceso de registro de usuarios en la aplicación. Cuando se recibe este
+ * comando, se llama al método registrar para gestionar el registro de usuarios.
+ * CERRARSESION: Cuando se recibe este comando, el usuario actual se desconecta
+ * y se guarda el estado de la aplicación en un archivo llamado "Agencia.xml".
+ * CONFIRMARNUEVOTICKET: Este comando está relacionado con la confirmación de la
+ * creación de un nuevo ticket. Cuando se recibe este comando, se llama al
+ * método nuevoTicket para gestionar la creación del ticket. GATILLAR: Cuando se
+ * recibe este comando, se activa una ronda de contrataciones en la aplicación
+ * llamando al método gatillarRonda del objeto agencia. MODIFICAR_VALORES: Este
+ * comando está relacionado con la modificación de valores V1 y V2 en la
+ * aplicación en función del tipo de usuario. APLICAR_PROMO: El código llama a
+ * un método aplicaPromo y muestra un mensaje con los detalles de un cliente
+ * después de aplicar la promoción.
+ * 
+ */
+
 public class Controlador implements ActionListener
 {
 	private IVista vista = new Ventana(this);
@@ -34,29 +59,7 @@ public class Controlador implements ActionListener
 
 	}
 
-	/**
-	 * Es el controlador de eventos que responde a diferentes acciones realizadas
-	 * por el usuario en la interfaz gráfica de la aplicación. Realiza acciones como
-	 * el inicio de sesión, registro, creación de tickets, activación de rondas de
-	 * contrataciones y otras acciones relacionadas con la lógica de la aplicación.
-	 * LOGIN: Cuando se recibe este comando, el método login se llama para manejar
-	 * el proceso de inicio de sesión. La lógica de inicio de sesión se ejecuta en
-	 * el método login. REG_BUTTON_REGISTRAR: Este comando está relacionado con el
-	 * proceso de registro de usuarios en la aplicación. Cuando se recibe este
-	 * comando, se llama al método registrar para gestionar el registro de usuarios.
-	 * CERRARSESION: Cuando se recibe este comando, el usuario actual se desconecta
-	 * y se guarda el estado de la aplicación en un archivo llamado "Agencia.xml".
-	 * CONFIRMARNUEVOTICKET: Este comando está relacionado con la confirmación de la
-	 * creación de un nuevo ticket. Cuando se recibe este comando, se llama al
-	 * método nuevoTicket para gestionar la creación del ticket. GATILLAR: Cuando se
-	 * recibe este comando, se activa una ronda de contrataciones en la aplicación
-	 * llamando al método gatillarRonda del objeto agencia. MODIFICAR_VALORES: Este
-	 * comando está relacionado con la modificación de valores V1 y V2 en la
-	 * aplicación en función del tipo de usuario. APLICAR_PROMO: El código llama a
-	 * un método aplicaPromo y muestra un mensaje con los detalles de un cliente
-	 * después de aplicar la promoción.
-	 * 
-	 */
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -106,6 +109,7 @@ public class Controlador implements ActionListener
 	 * trata la excepción ImposibleModificarTicketsException Luego, después de
 	 * intentar eliminar el ticket, se llama al método actualizaCliente() de la
 	 * vista para actualizar la interfaz de usuario del cliente.
+	 * Si el tiecket no se puede elimiar muestra un cuadro emergente con el mensaje correspondiente a la excepcion ImposibleModificarTicketsException 
 	 */
 
 	private void eliminarTicket()
@@ -121,12 +125,7 @@ public class Controlador implements ActionListener
 		this.vista.actualizaCliente();
 	}
 
-	/**
-	 * Este método se encarga de seleccionar un candidato, utilizando el método
-	 * setCandidato() de la instancia de usuario y obtiene el candidato de la vista
-	 * utilizando el método getCandidato()
-	 */
-
+	
 	private void seleccionarCandidato()
 	{
 		this.usuario.setCandidato(this.vista.getCandidato());
@@ -135,8 +134,7 @@ public class Controlador implements ActionListener
 
 	/**
 	 * Se encarga de aplicar una promoción en la aplicación y luego mostrar
-	 * información sobre el cliente después de aplicar la promoción en la interfaz
-	 * de usuario.
+	 * información sobre el cliente después de aplicar la promoción en una ventana emergente
 	 * 
 	 * 
 	 */
@@ -150,12 +148,13 @@ public class Controlador implements ActionListener
 	/**
 	 * Se utiliza para modificar los valores de las variables limiteInferior y
 	 * limiteSuperior en el objeto agencia.
+	 * En caso de error se muestra el mensaje correspondiente en una ventana emergente
 	 * 
 	 */
 
 	public void modificarValorsLimitesRemuneracion()
 	{
-		System.out.println("lalala");
+		
 		try
 		{
 			agencia.setLimitesRemuneracion(this.vista.getLimiteInferior(), this.vista.getLimiteSuperior());
@@ -221,7 +220,7 @@ public class Controlador implements ActionListener
 	 * ImposibleModificarTicketsException Después de crear el nuevo ticket (ya sea
 	 * de empleado o empleador), se llama al método actualizaCliente() de la vista
 	 * para actualizar la interfaz de usuario del cliente.
-	 * 
+	 * En caso de error se muestra el mensaje correspondiente
 	 */
 
 	public void nuevoTicket()
@@ -320,24 +319,7 @@ public class Controlador implements ActionListener
 			this.vista.actualizar(t, usuario);
 		}
 	}
-	/*
-	 * else if (evento.getActionCommand().equals(InterfazVista.SIGUIENTEEMPLEADOR))
-	 * {// campo de datos personales de tipo empresa this.usuario =
-	 * modelo.registroEmpleador(vista.getTextoUsuarioRegistro().getText(),
-	 * vista.getTextoContraseï¿½aRegistro().getText(),
-	 * vista.getTextoNombre().getText(),
-	 * vista.getGrupoTipoPersona().getSelection().getActionCommand(),
-	 * vista.getGrupoTipoRubro().getSelection().getActionCommand());
-	 * InicioSesionEmpleador(); } else if
-	 * (evento.getActionCommand().equals(InterfazVista.SIGUIENTEEMPLEADO)) {// campo
-	 * de datos personales de tipo empleador this.usuario =
-	 * modelo.registroEmpleado(vista.getTextoUsuarioRegistro().getText(),
-	 * vista.getTextoContraseï¿½aRegistro().getText(),
-	 * vista.getTextoNombre().getText(), vista.getTextoApellido().getText(),
-	 * vista.getTextoTelefono().getText(),
-	 * Integer.parseInt(vista.getTextoEdad().getText())); InicioSesionEmpleado();
-	 * 
-	 */
+	
 
 	/**
 	 * Se encarga de autenticar (loguear) a un usuario en la agencia utilizando las
