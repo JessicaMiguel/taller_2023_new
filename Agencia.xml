@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="19.0.1" class="java.beans.XMLDecoder">
+<java version="17.0.7" class="java.beans.XMLDecoder">
  <object class="persistencia.AgenciaDTO" id="AgenciaDTO0">
   <void property="empleadores">
    <void method="put">
@@ -33,6 +33,29 @@
      </void>
      <void property="usserName">
       <string>hpc</string>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>verduleria</string>
+    <object class="modeloDatos.Empleador">
+     <void property="password">
+      <string>ferduleria</string>
+     </void>
+     <void property="realName">
+      <string>535345345345</string>
+     </void>
+     <void property="rubro">
+      <string>JURIDICA</string>
+     </void>
+     <void property="telefono">
+      <string>Verduleria la papa loca</string>
+     </void>
+     <void property="tipoPersona">
+      <string>COMERCIO LOCAL</string>
+     </void>
+     <void property="usserName">
+      <string>verduleria</string>
      </void>
     </object>
    </void>
@@ -123,6 +146,29 @@
      </void>
      <void property="usserName">
       <string>xime</string>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>miguel</string>
+    <object class="modeloDatos.EmpleadoPretenso">
+     <void property="apellido">
+      <string>23545564654</string>
+     </void>
+     <void property="edad">
+      <int>34</int>
+     </void>
+     <void property="password">
+      <string>miguel</string>
+     </void>
+     <void property="realName">
+      <string>Miguel Andres Fernando</string>
+     </void>
+     <void property="telefono">
+      <string>Gomez</string>
+     </void>
+     <void property="usserName">
+      <string>miguel</string>
      </void>
     </object>
    </void>

@@ -11,7 +11,7 @@ public abstract class Cliente extends Usuario
 {
 	
 	private Ticket ticket = null;
-	private ArrayList<UsuarioPuntaje> listaDePostulantes=null;
+	private ArrayList<ClientePuntaje> listaDePostulantes=null;
 	private int puntaje;
 	private Cliente candidato=null;
 
@@ -52,7 +52,7 @@ public abstract class Cliente extends Usuario
 	
 
 
-	public ArrayList<UsuarioPuntaje> getListaDePostulantes()
+	public ArrayList<ClientePuntaje> getListaDePostulantes()
 	{
 	    return listaDePostulantes;
 	}
@@ -62,7 +62,7 @@ public abstract class Cliente extends Usuario
 	 * <b>pre:</b> listaDePostulantes es diferente de null, los postulantes son de tipo valido (EmpleadorPretensos para Empleadores y viceversa) 
 	 * @param listaDePostulantes ArrayList ordenado por puntaje de los postulantes para realizar la contratacion
 	 */
-	public void setListaDePostulantes(ArrayList<UsuarioPuntaje> listaDePostulantes)
+	public void setListaDePostulantes(ArrayList<ClientePuntaje> listaDePostulantes)
 	{
 	    this.listaDePostulantes = listaDePostulantes;
 	}

@@ -21,7 +21,7 @@ import javax.swing.border.TitledBorder;
 
 import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
-import modeloDatos.UsuarioPuntaje;
+import modeloDatos.ClientePuntaje;
 import modeloDatos.Cliente;
 import modeloNegocio.Agencia;
 import util.Constantes;
@@ -34,8 +34,8 @@ public class PanelCliente extends PanelAgencia
     private JButton btnCerrarSesion;
 
     private JPanel panelTicket;
-    private JList<UsuarioPuntaje> list;
-    private DefaultListModel<UsuarioPuntaje> modeloLista = new DefaultListModel<UsuarioPuntaje>();
+    private JList<ClientePuntaje> list;
+    private DefaultListModel<ClientePuntaje> modeloLista = new DefaultListModel<ClientePuntaje>();
     private JScrollPane scrollPane_1;
     private JTextArea textArea;
     private JPanel panel_Resultado;
@@ -144,7 +144,7 @@ public class PanelCliente extends PanelAgencia
 
 	this.panelCandidatos.setLayout(new BorderLayout(0, 0));
 
-	this.list = new JList<UsuarioPuntaje>();
+	this.list = new JList<ClientePuntaje>();
 	this.list.setBorder(null);
 
 	this.list.setModel(modeloLista);
@@ -371,7 +371,7 @@ public class PanelCliente extends PanelAgencia
 	if (cliente.getListaDePostulantes() != null)
 	{
 	    this.modeloLista.clear();
-	    Iterator<UsuarioPuntaje> it = cliente.getListaDePostulantes().iterator();
+	    Iterator<ClientePuntaje> it = cliente.getListaDePostulantes().iterator();
 	    while (it.hasNext())
 		this.modeloLista.addElement(it.next());
 	    this.repaint();
@@ -555,7 +555,7 @@ public class PanelCliente extends PanelAgencia
     {
 	Cliente u = null;
 	if (this.list.getSelectedValue() != null)
-	    u = this.list.getSelectedValue().getUsuario();
+	    u = this.list.getSelectedValue().getCliente();
 	return u;
     }
 }

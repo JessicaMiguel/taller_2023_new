@@ -21,7 +21,7 @@ import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
 import modeloDatos.Ticket;
 import modeloDatos.Usuario;
-import modeloDatos.UsuarioPuntaje;
+import modeloDatos.ClientePuntaje;
 import persistencia.AgenciaDTO;
 import persistencia.IPersistencia;
 import persistencia.UtilPersistencia;
@@ -178,7 +178,7 @@ public class Agencia
     }
 
     /**
-     * Este metodo otorga premios y castigos a los usuarios que participan en el
+     * Este metodo otorga premios y castigos a los clientes que participan en el
      * proceso de seleccion. <b>Pre: </b>Las listas de postulantes estan ordenadas
      * 
      */
@@ -192,9 +192,9 @@ public class Agencia
 	    Empleador empleador = itEmpleadores.next();
 	    if (empleador.getListaDePostulantes() != null && !empleador.getListaDePostulantes().isEmpty())
 	    {
-		ArrayList<UsuarioPuntaje> ups = empleador.getListaDePostulantes();
-		ups.get(0).getUsuario().setPuntaje(ups.get(0).getUsuario().getPuntaje() + 5);
-		ups.get(ups.size() - 1).getUsuario().setPuntaje(ups.get(0).getUsuario().getPuntaje() - 5);
+		ArrayList<ClientePuntaje> ups = empleador.getListaDePostulantes();
+		ups.get(0).getCliente().setPuntaje(ups.get(0).getCliente().getPuntaje() + 5);
+		ups.get(ups.size() - 1).getCliente().setPuntaje(ups.get(0).getCliente().getPuntaje() - 5);
 
 	    }
 	}
@@ -206,8 +206,8 @@ public class Agencia
 	    EmpleadoPretenso empleado = itEmpleados.next();
 	    if (empleado.getListaDePostulantes() != null && !empleado.getListaDePostulantes().isEmpty())
 	    {
-		ArrayList<UsuarioPuntaje> ups = empleado.getListaDePostulantes();
-		ups.get(0).getUsuario().setPuntaje(ups.get(0).getUsuario().getPuntaje() + 10);
+		ArrayList<ClientePuntaje> ups = empleado.getListaDePostulantes();
+		ups.get(0).getCliente().setPuntaje(ups.get(0).getCliente().getPuntaje() + 10);
 	    }
 	}
 
@@ -242,7 +242,7 @@ public class Agencia
      * Esta relacionado con la ocurrencia de un "match" entre un empleador y un
      * empleado pretenso, lo que implica que un empleado potencial ha sido
      * seleccionado por un empleador. Realiza ajustes en los puntajes y las
-     * comisiones, y marca a ambos usuarios como no disponibles para futuros matches
+     * comisiones, y marca a ambos clientes como no disponibles para futuros matches
      * o contrataciones. <b>Pre: </b> Empleado y empleador deben ser validos y estar
      * registrados en el sistema <br>
      * Crea una nueva instancia de Contratacion que representa la contratacion o
@@ -295,14 +295,14 @@ public class Agencia
 	    if (empleador.getTicket() != null)
 	    {
 		itEmpleados = this.empleados.values().iterator();
-		ArrayList<UsuarioPuntaje> asignaciones = new ArrayList<UsuarioPuntaje>();
+		ArrayList<ClientePuntaje> asignaciones = new ArrayList<ClientePuntaje>();
 		while (itEmpleados.hasNext())
 		{
 		    EmpleadoPretenso empleado = itEmpleados.next();
 		    if (empleado.getTicket() != null)
 		    {
 			double puntaje = empleador.getTicket().getComparacionTotal(empleado.getTicket());
-			UsuarioPuntaje up = new UsuarioPuntaje(puntaje, empleado);
+			ClientePuntaje up = new ClientePuntaje(puntaje, empleado);
 			asignaciones.add(up);
 
 		    }
@@ -320,14 +320,14 @@ public class Agencia
 	    if (empleado.getTicket() != null)
 	    {
 		itEmpleadores = this.empleadores.values().iterator();
-		ArrayList<UsuarioPuntaje> asignaciones = new ArrayList<UsuarioPuntaje>();
+		ArrayList<ClientePuntaje> asignaciones = new ArrayList<ClientePuntaje>();
 		while (itEmpleadores.hasNext())
 		{
 		    Empleador empleador = itEmpleadores.next();
 		    if (empleador.getTicket() != null)
 		    {
 			double puntaje = empleador.getTicket().getComparacionTotal(empleado.getTicket());
-			UsuarioPuntaje up = new UsuarioPuntaje(puntaje, empleador);
+			ClientePuntaje up = new ClientePuntaje(puntaje, empleador);
 			asignaciones.add(up);
 
 		    }
@@ -366,14 +366,14 @@ public class Agencia
      * Se encarga de crear un nuevo ticket para un empleado con los datos enviados
      * por parametros. Si el Empleado tiene un ticket activo, este sera eliminado.
      * 
-     *  <b>Pre:</b> El usuario debe ser un empleado <br>
+     *  <b>Pre:</b> El cliente debe ser un empleado <br>
      * @param locacion     String con la locacion del empleado
      * @param remuneracion int con la remuneracion pretendida por el empleado
      * @param jornada      String con la jornada de preferencia del empleado
      * @param puesto       String tipo de puesto al que aspira el empleado
      * @param experiencia  String experiencia del empleado
      * @param estudios     String estudios que posee el empleado
-     * @param usuario      objeto Usuario del ticket
+     * @param cliente      objeto cliente del ticket
      * @throws ImposibleModificarTicketsException lanza una excepcion
      *                                            ImposibleModificarTicketsException
      *                                            si el estado de contratacion no
@@ -383,18 +383,18 @@ public class Agencia
      */
 
     public void crearTicketEmpleado(String locacion, int remuneracion, String jornada, String puesto,
-	    String experiencia, String estudios, Cliente usuario) throws ImposibleModificarTicketsException
+	    String experiencia, String estudios, Cliente cliente) throws ImposibleModificarTicketsException
     {
 	if (this.estadoContratacion)
 	    throw new ImposibleModificarTicketsException();
-	if (usuario.getTicket() != null)
+	if (cliente.getTicket() != null)
 	    this.eliminarTicket();
-	usuario.setTicket(new Ticket(locacion, remuneracion, jornada, puesto, experiencia, estudios));
+	cliente.setTicket(new Ticket(locacion, remuneracion, jornada, puesto, experiencia, estudios));
     }
 
     /**
      * Se encarga de crear un nuevo ticket para un empleador. Si el Empleador tiene un ticket activo, este sera eliminado.
-     * <b>pre: </b> El usuario debe ser un empleador (no un empleado) <br>
+     * <b>pre: </b> El cliente debe ser un empleador (no un empleado) <br>
      * 
      * @param locacion     String locacion de la oferta del empleador
      * @param remuneracion int remuneracion ofrecida por el empleador
@@ -403,7 +403,7 @@ public class Agencia
      * @param puesto       String tipo de puesto de la posicion
      * @param experiencia  String experiencia requerida para el puesto
      * @param estudios     String estudios requeridos para el puesto
-     * @param usuario      objeto Usuario a quien se le creara el ticket
+     * @param cliente      objeto Usuario a quien se le creara el ticket
      * @throws ImposibleModificarTicketsException lanza una excepcion
      *                                            ImposibleModificarTicketsException
      *                                            si el estado de contratacion no
@@ -412,13 +412,13 @@ public class Agencia
      */
 
     public void crearTicketEmpleador(String locacion, int remuneracion, String jornada, String puesto,
-	    String experiencia, String estudios, Cliente usuario) throws ImposibleModificarTicketsException
+	    String experiencia, String estudios, Cliente cliente) throws ImposibleModificarTicketsException
     {
 	if (this.estadoContratacion)
 	    throw new ImposibleModificarTicketsException();
-	if (usuario.getTicket() != null)
+	if (cliente.getTicket() != null)
 	    this.eliminarTicket();
-	usuario.setTicket(new Ticket(locacion, remuneracion, jornada, puesto, experiencia, estudios));
+	cliente.setTicket(new Ticket(locacion, remuneracion, jornada, puesto, experiencia, estudios));
 
     }
 
@@ -431,7 +431,7 @@ public class Agencia
      * @param apellido      String con el apellido del empleado que esta registrando
      * @param telefono      String con el telefono del empleado
      * @param edad          int con la edad del empleado que se esta registrando
-     * @return objeto Usuario que es el empleado registrado
+     * @return objeto Cliente que es el empleado registrado
      * @throws NewRegisterException            se lanza para indicar que el nombre
      *                                         de usuario ya esta en uso.
      * @throws ImposibleCrearEmpleadoException Se lanza en caso de que
@@ -467,7 +467,7 @@ public class Agencia
      * @param tipoPersona   String tipo de persona: Fisica o Juridica para el
      *                      empleador que se esta registrando
      * @param rubro         String rubro del empleador que se esta registrando
-     * @return Objeto usuario con el empleador registrado
+     * @return Objeto Cliente con el empleador registrado
      * @throws NewRegisterException             Se lanza en caso de que ya exista un
      *                                          empleador registrado con el mismo
      *                                          nombreUsuario.
@@ -608,7 +608,7 @@ public class Agencia
      * de contrataciones de la agencia.
      * 
      * @param ep el Objeto EmpleadoPretenso de quien se quiere obtener la contratacion
-     * @return objeto usuario con el Empleador encontrado si no se encontro ninguna
+     * @return objeto Cliente con el Empleador encontrado si no se encontro ninguna
      *         contratacion que involucre al EmpleadoPretenso especificado. <b>Pre:
      *         </b> empleado distinto de null y registrado en el sistema<br>
      */
@@ -641,7 +641,7 @@ public class Agencia
      * 
      * @param promoPorListaDePostulantes Este parametro es un booleano que controla
      *                                   el tipo de promocion que se aplicara.
-     * @return objeto Usuario En resumen, el metodo aplicaPromo se utiliza para
+     * @return objeto Cliente En resumen, el metodo aplicaPromo se utiliza para
      *         seleccionar y beneficiar a un cliente especifico (ya sea un Empleador
      *         o un EmpleadoPretenso) <b>Pre: </b> promoPorListaDePostulantes es
      *         true o false <br>
@@ -758,7 +758,7 @@ public class Agencia
 
     /**
      * Elimina el ticlet del usuario logueado en 
-     * <br><b>pre:</b> Hay un usuario logueado en la aplicacion
+     * <br><b>pre:</b> Hay un cliente logueado en la aplicacion
      * <br>
      * @throws ImposibleModificarTicketsException lanza una excepcion
      *                                            ImposibleModificarTicketsException
