@@ -21,14 +21,14 @@ import javax.swing.border.TitledBorder;
 
 import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
-import modeloDatos.Usuario;
+import modeloDatos.UsuarioPuntaje;
+import modeloDatos.Cliente;
 import modeloNegocio.Agencia;
-import modeloNegocio.UsuarioPuntaje;
 import util.Constantes;
 
 public class PanelCliente extends PanelAgencia
 {
-    private Usuario cliente;
+    private Cliente cliente;
     private JPanel panelCentral;
     private JPanel panelSur;
     private JButton btnCerrarSesion;
@@ -83,7 +83,7 @@ public class PanelCliente extends PanelAgencia
     private JScrollPane scrollPane_3;
     private int remuneracion = 0;
     private int tipoUsuario;
-    private Usuario usuario;
+    private Cliente usuario;
     private JPanel panel;
     private JButton btnEliminarTicket;
 
@@ -93,7 +93,7 @@ public class PanelCliente extends PanelAgencia
      * @param tipoUsuario
      * @param usuario
      */
-    public PanelCliente(Usuario cliente, ActionListener actionListener, int tipoUsuario, Usuario usuario)
+    public PanelCliente(Cliente cliente, ActionListener actionListener, int tipoUsuario, Cliente usuario)
     {
 	super(actionListener);
 	this.usuario = usuario;
@@ -520,7 +520,7 @@ public class PanelCliente extends PanelAgencia
 	    this.textAreaTicket.setText("Sin Ticket");
 	}
 	this.btnEliminarTicket.setEnabled(this.cliente.getTicket() != null);
-	Usuario emparejamiento = null;
+	Cliente emparejamiento = null;
 	double comision = 0;
 	if (this.tipoUsuario == 0)
 	{
@@ -551,9 +551,9 @@ public class PanelCliente extends PanelAgencia
 	this.actualizaLista();
     }
 
-    public Usuario getCandidato()
+    public Cliente getCandidato()
     {
-	Usuario u = null;
+	Cliente u = null;
 	if (this.list.getSelectedValue() != null)
 	    u = this.list.getSelectedValue().getUsuario();
 	return u;

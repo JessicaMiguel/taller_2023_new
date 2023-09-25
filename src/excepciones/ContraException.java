@@ -1,5 +1,6 @@
 package excepciones;
 
+import modeloDatos.Cliente;
 import modeloDatos.Usuario;
 
 
@@ -30,7 +31,7 @@ public class ContraException extends LoginException {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario)
+	public void setUsuario(Cliente usuario)
 	{
 		this.usuario = usuario;
 	}

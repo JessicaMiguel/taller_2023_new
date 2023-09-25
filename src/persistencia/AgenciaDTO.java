@@ -6,7 +6,7 @@ import java.util.HashMap;
 import modeloDatos.Contratacion;
 import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
-import modeloDatos.Usuario;
+import modeloDatos.Cliente;
 
 public class AgenciaDTO
 {
@@ -16,7 +16,7 @@ public class AgenciaDTO
 	private int limiteSuperior;
 	private ArrayList<Contratacion> contrataciones = new ArrayList<Contratacion>();
 	private boolean estadoContratacion = false;
-	private HashMap<Usuario, Double> comisionesUsuarios = new HashMap<Usuario, Double>();
+	private HashMap<Cliente, Double> comisionesUsuarios = new HashMap<Cliente, Double>();
 
 	public HashMap<String, EmpleadoPretenso> getEmpleados()
 	{
@@ -80,12 +80,12 @@ public class AgenciaDTO
 		this.estadoContratacion = estadoContratacion;
 	}
 
-	public HashMap<Usuario, Double> getComisionesUsuarios()
+	public HashMap<Cliente, Double> getComisionesUsuarios()
 	{
 		return comisionesUsuarios;
 	}
 
-	public void setComisionesUsuarios(HashMap<Usuario, Double> comisionesUsuarios)
+	public void setComisionesUsuarios(HashMap<Cliente, Double> comisionesUsuarios)
 	{
 		this.comisionesUsuarios = comisionesUsuarios;
 	}

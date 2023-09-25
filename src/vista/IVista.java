@@ -1,5 +1,6 @@
 package vista;
 
+import modeloDatos.Cliente;
 import modeloDatos.Usuario;
 
 public interface IVista
@@ -51,6 +52,6 @@ public interface IVista
 
     public boolean isPorTicket();
 
-    public Usuario getCandidato();
+    public Cliente getCandidato();
 
 }

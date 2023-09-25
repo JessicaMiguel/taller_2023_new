@@ -15,17 +15,22 @@ import excepciones.LimiteSuperiorRemuneracionInvalidaException;
 import excepciones.NewRegisterException;
 import excepciones.NombreUsuarioException;
 import modeloDatos.Admin;
+import modeloDatos.Cliente;
 import modeloDatos.Contratacion;
 import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
 import modeloDatos.Ticket;
 import modeloDatos.Usuario;
+import modeloDatos.UsuarioPuntaje;
 import persistencia.AgenciaDTO;
 import persistencia.IPersistencia;
 import persistencia.UtilPersistencia;
 import util.Constantes;
 import util.Mensajes;
 
+/**
+ * 
+ */
 public class Agencia
 {
     private static Agencia instance;
@@ -37,7 +42,7 @@ public class Agencia
     private int tipoUsuario = -1;
     private ArrayList<Contratacion> contrataciones = new ArrayList<Contratacion>();
     private boolean estadoContratacion = false;
-    private HashMap<Usuario, Double> comisionesUsuarios = new HashMap<Usuario, Double>();
+    private HashMap<Cliente, Double> comisionesUsuarios = new HashMap<Cliente, Double>();
     private IPersistencia persistencia;
 
     private Agencia()
@@ -219,7 +224,7 @@ public class Agencia
 	    if (empleador.getCandidato() != null)
 	    {
 
-		Usuario empleado = empleador.getCandidato();
+		Cliente empleado = empleador.getCandidato();
 
 		if (empleado.getCandidato() != null)
 		{
@@ -378,7 +383,7 @@ public class Agencia
      */
 
     public void crearTicketEmpleado(String locacion, int remuneracion, String jornada, String puesto,
-	    String experiencia, String estudios, Usuario usuario) throws ImposibleModificarTicketsException
+	    String experiencia, String estudios, Cliente usuario) throws ImposibleModificarTicketsException
     {
 	if (this.estadoContratacion)
 	    throw new ImposibleModificarTicketsException();
@@ -407,7 +412,7 @@ public class Agencia
      */
 
     public void crearTicketEmpleador(String locacion, int remuneracion, String jornada, String puesto,
-	    String experiencia, String estudios, Usuario usuario) throws ImposibleModificarTicketsException
+	    String experiencia, String estudios, Cliente usuario) throws ImposibleModificarTicketsException
     {
 	if (this.estadoContratacion)
 	    throw new ImposibleModificarTicketsException();
@@ -435,7 +440,7 @@ public class Agencia
      *                                         
      */
 
-    public Usuario registroEmpleado(String nombreUsuario, String pass, String nombreReal, String apellido,
+    public Cliente registroEmpleado(String nombreUsuario, String pass, String nombreReal, String apellido,
 	    String telefono, int edad) throws NewRegisterException, ImposibleCrearEmpleadoException
     {
 	if (nombreUsuario == null || pass == null || nombreReal == null || telefono == null || apellido == null)
@@ -476,7 +481,7 @@ public class Agencia
      *                                          <br>
      */
 
-    public Usuario registroEmpleador(String nombreUsuario, String pass, String nombreReal, String telefono,
+    public Cliente registroEmpleador(String nombreUsuario, String pass, String nombreReal, String telefono,
 	    String tipoPersona, String rubro) throws NewRegisterException, ImposibleCrearEmpleadorException
     {
 	if (nombreUsuario == null || pass == null || nombreReal == null || telefono == null || tipoPersona == null
@@ -559,7 +564,7 @@ public class Agencia
      *         
      */
 
-    public Usuario getContratacionEmpleador(Empleador empleador)
+    public Cliente getContratacionEmpleador(Empleador empleador)
     {
 	EmpleadoPretenso respuesta = null;
 	int i = this.contrataciones.size() - 1;
@@ -570,7 +575,7 @@ public class Agencia
 	return respuesta;
     }
 
-    public double getComisionUsuario(Usuario usuario)
+    public double getComisionUsuario(Cliente usuario)
     {
 	return this.comisionesUsuarios.get(usuario);
     }
@@ -608,7 +613,7 @@ public class Agencia
      *         </b> empleado distinto de null y registrado en el sistema<br>
      */
 
-    public Usuario getContratacionEmpleadoPretenso(EmpleadoPretenso ep)
+    public Cliente getContratacionEmpleadoPretenso(EmpleadoPretenso ep)
     {
 	Empleador respuesta = null;
 	int i = this.contrataciones.size() - 1;
@@ -643,12 +648,12 @@ public class Agencia
      *         
      */
 
-    public Usuario aplicaPromo(boolean promoPorListaDePostulantes)
+    public Cliente aplicaPromo(boolean promoPorListaDePostulantes)
     {
 	Iterator clientes = null;
 	int contadorEmpleador = 0;
 	int contadorEmpleadoPretenso = 0;
-	Usuario clienteBeneficiado = null;
+	Cliente clienteBeneficiado = null;
 
 	if (promoPorListaDePostulantes)
 	{
@@ -682,7 +687,7 @@ public class Agencia
 	int puntajeMaximo = Integer.MIN_VALUE;
 	while (clientes.hasNext())
 	{
-	    Usuario cl = (Usuario) clientes.next();
+	    Cliente cl = (Cliente) clientes.next();
 	    if (cl.getPuntaje() > puntajeMaximo)
 	    {
 		puntajeMaximo = cl.getPuntaje();
@@ -764,8 +769,9 @@ public class Agencia
     {
 	if (this.estadoContratacion)
 	    throw new ImposibleModificarTicketsException();
-	this.usuarioLogeado.setTicket(null);
-	this.usuarioLogeado.setPuntaje(this.usuarioLogeado.getPuntaje() - 1);
+	Cliente cli=(Cliente) this.usuarioLogeado;
+	cli.setTicket(null);
+	cli.setPuntaje(cli.getPuntaje() - 1);
     }
 
     public String getEstado()
@@ -788,12 +794,12 @@ public class Agencia
 	this.contrataciones = contrataciones;
     }
 
-    public HashMap<Usuario, Double> getComisionesUsuarios()
+    public HashMap<Cliente, Double> getComisionesUsuarios()
     {
 	return comisionesUsuarios;
     }
 
-    public void setComisionesUsuarios(HashMap<Usuario, Double> comisionesUsuarios)
+    public void setComisionesUsuarios(HashMap<Cliente, Double> comisionesUsuarios)
     {
 	this.comisionesUsuarios = comisionesUsuarios;
     }

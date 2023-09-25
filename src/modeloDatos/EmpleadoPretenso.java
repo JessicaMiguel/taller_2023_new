@@ -6,7 +6,7 @@ import util.Constantes;
  * Clase que representa un usuario pretenso
  * <b>Todos los setters tienen como precondicion , que su parametro es diferente de null</b>
  */
-public class EmpleadoPretenso extends Usuario
+public class EmpleadoPretenso extends Cliente
 {
 	private String apellido;
 	private int edad;

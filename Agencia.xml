@@ -249,9 +249,6 @@
   <void property="estadoContratacion">
    <boolean>true</boolean>
   </void>
-  <void property="limiteInferior">
-   <int>1000</int>
-  </void>
   <void property="limiteSuperior">
    <int>5000</int>
   </void>

@@ -12,10 +12,10 @@ import excepciones.LimiteInferiorRemuneracionInvalidaException;
 import excepciones.LimiteSuperiorRemuneracionInvalidaException;
 import excepciones.NewRegisterException;
 import excepciones.NombreUsuarioException;
+import modeloDatos.Cliente;
 import modeloDatos.Usuario;
 import modeloNegocio.Agencia;
 import util.Constantes;
-import util.Mensajes;
 import vista.IOptionPane;
 import vista.IVista;
 import vista.MyJOptionPane;
@@ -43,6 +43,7 @@ import vista.Ventana;
  * aplicacion en funcion del tipo de usuario. APLICAR_PROMO: El codigo llama a
  * un metodo aplicaPromo y muestra un mensaje con los detalles de un cliente
  * despues de aplicar la promocion.
+ * <b>Invariante de clase, <br>Los atributos vista y myOptionPane son diferentes de null <br>El atributo tipoUsuario es siempre igual a 0, 1 o 2 </b>
  * 
  */
 
@@ -127,8 +128,9 @@ public class Controlador implements ActionListener
 
 	private void seleccionarCandidato()
 	{
-		this.usuario.setCandidato(this.vista.getCandidato());
-		System.out.println(this.usuario + "  eligio a " + this.usuario.getCandidato());
+		Cliente cli=(Cliente) this.usuario;
+		cli.setCandidato(this.vista.getCandidato());
+		System.out.println(this.usuario + "  eligio a " + cli.getCandidato());
 	}
 
 	/**
@@ -141,7 +143,7 @@ public class Controlador implements ActionListener
 
 	public void aplicarPromo()
 	{
-		Usuario cl = agencia.aplicaPromo(this.vista.isPorTicket());
+		Cliente cl = agencia.aplicaPromo(this.vista.isPorTicket());
 		this.myOptionPane.ShowMessage(cl.toString());
 	}
 
@@ -229,6 +231,7 @@ public class Controlador implements ActionListener
 
 	public void nuevoTicket()
 	{
+		Cliente cliente=(Cliente) this.usuario;
 		String jornada = this.vista.getJornada();
 		String locacion = this.vista.getLocacion();
 		String estudios = this.vista.getEstudios();
@@ -238,7 +241,7 @@ public class Controlador implements ActionListener
 		if (this.tipoUsuario == 0)
 			try
 			{
-				agencia.crearTicketEmpleado(locacion, remuneracion, jornada, puesto, experiencia, estudios, usuario);
+				agencia.crearTicketEmpleado(locacion, remuneracion, jornada, puesto, experiencia, estudios, cliente);
 			} catch (ImposibleModificarTicketsException e)
 			{
 				this.myOptionPane.ShowMessage(e.getMessage());
@@ -246,7 +249,7 @@ public class Controlador implements ActionListener
 		else if (this.tipoUsuario == 1)
 			try
 			{
-				agencia.crearTicketEmpleador(locacion, remuneracion, jornada, puesto, experiencia, estudios, usuario);
+				agencia.crearTicketEmpleador(locacion, remuneracion, jornada, puesto, experiencia, estudios, cliente);
 			} catch (ImposibleModificarTicketsException e)
 			{
 				this.myOptionPane.ShowMessage(e.getMessage());

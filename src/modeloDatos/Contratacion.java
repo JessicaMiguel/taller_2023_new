@@ -7,6 +7,7 @@ import util.Constantes;
 /**
  * Clase que representa una contratacion entre un empleado y un empleador con su correspondiente fecha de creacion
  *<b>Todos los setters tienen como precondicion , que su parametro es diferente de null</b>
+ *<b>Invariante de clase, <br>Los atributos empleado, empleador y fecha son diferentes de null </b>
  */
 public class Contratacion
 {

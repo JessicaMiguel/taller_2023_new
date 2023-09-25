@@ -1,17 +1,15 @@
-package modeloNegocio;
-
-import modeloDatos.Usuario;
-
-
+package modeloDatos;
 
 /**
  * Clase que representa un Usuario con su corespondiente puntaje obtenido en una busqueda laboral
  * El objeto es Comparable en forma descendente por su puntaje obtenido.
+ * Todos los setters de tipo String tienen como precondicion , que su parametro es diferente de null y son del tipo esperado contemplado en la clase Constantes
+ * <b>Invariante de clase</b>usuario es distinto de null<br>
  */
 public class UsuarioPuntaje implements Comparable
 {
 private double puntaje;
-private Usuario usuario;
+private Cliente usuario;
 
 
 
@@ -24,7 +22,7 @@ public UsuarioPuntaje() {}
  * @param puntaje
  * @param usuario
  */
-public UsuarioPuntaje(double puntaje, Usuario usuario)
+public UsuarioPuntaje(double puntaje, Cliente usuario)
 {
     super();
     this.puntaje = puntaje;
@@ -41,7 +39,7 @@ public void setPuntaje(double puntaje)
 {
 	this.puntaje = puntaje;
 }
-public Usuario getUsuario()
+public Cliente getUsuario()
 {
 	return usuario;
 }
@@ -49,7 +47,7 @@ public Usuario getUsuario()
  * <b>Pre:</b> Usuario es diferente de null
  * @param usuario
  */
-public void setUsuario(Usuario usuario)
+public void setUsuario(Cliente usuario)
 {
 	this.usuario = usuario;
 }

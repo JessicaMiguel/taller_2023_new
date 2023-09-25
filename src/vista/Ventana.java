@@ -10,18 +10,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import modeloDatos.Cliente;
 import modeloDatos.Usuario;
 import modeloNegocio.Agencia;
 import util.Constantes;
 
-
 /**
- *  Clase que representa la Ventana en la aplicaicion. En cada sesion, las ventanas aparecen limpias.
+ * Clase que representa la Ventana en la aplicaicion. En cada sesion, las
+ * ventanas aparecen limpias.
+ * 
  * @author
  *
  */
 
-public class Ventana extends JFrame implements IVista, ActionListener,WindowListener
+public class Ventana extends JFrame implements IVista, ActionListener, WindowListener
 {
 
 	private JPanel contentPane;
@@ -46,8 +48,7 @@ public class Ventana extends JFrame implements IVista, ActionListener,WindowList
 
 		this.panelRegistro.addActionListener(this);
 		this.panelLogin.addActionListener(this);
-		this.panelAdmin.addActionListener(this); 
-		
+		this.panelAdmin.addActionListener(this);
 
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -79,10 +80,10 @@ public class Ventana extends JFrame implements IVista, ActionListener,WindowList
 		this.repaint();
 	}
 
-	private void goToCliente(int tipoUsuario, Usuario usuario)
+	private void goToCliente(int tipoUsuario, Cliente usuario)
 	{
 		this.contentPane.remove(panelActual);
-		this.panelCliente = new PanelCliente(usuario, actionListener,tipoUsuario,usuario);
+		this.panelCliente = new PanelCliente(usuario, actionListener, tipoUsuario, usuario);
 		panelCliente.addActionListener(this);
 		this.contentPane.add(panelCliente, BorderLayout.CENTER);
 		this.panelActual = panelCliente;
@@ -111,32 +112,34 @@ public class Ventana extends JFrame implements IVista, ActionListener,WindowList
 		String comando = e.getActionCommand();
 		if (comando.equalsIgnoreCase(Constantes.REGISTRAR))
 			this.goToRegistro();
-		else if (comando.equalsIgnoreCase(Constantes.REG_BUTTON_CANCELAR) || comando.equalsIgnoreCase(Constantes.CERRARSESION))
+		else if (comando.equalsIgnoreCase(Constantes.REG_BUTTON_CANCELAR)
+				|| comando.equalsIgnoreCase(Constantes.CERRARSESION))
 			this.goToLogin();
-		
-		
+
 	}
 
 	@Override
 	public void actualizar(int tipoUsuario, Usuario usuario)
 	{
 		this.setTitle(Agencia.getInstance().getEstado());
-	    if (tipoUsuario != 2)
-			this.goToCliente(tipoUsuario, usuario);
-		else
-		    this.goToAdmin(usuario);
-		
+		if (tipoUsuario != 2)
+		{
+			Cliente cli = (Cliente) usuario;
+			this.goToCliente(tipoUsuario, cli);
+		} else
+			this.goToAdmin(usuario);
+
 	}
 
 	private void goToAdmin(Usuario usuario)
 	{
-	    this.contentPane.remove(panelActual);
+		this.contentPane.remove(panelActual);
 		this.panelAdmin.actualizarListas();
 		this.contentPane.add(this.panelAdmin, BorderLayout.CENTER);
 		this.panelActual = this.panelAdmin;
 
 		this.validate();
-		this.repaint(); 
+		this.repaint();
 	}
 
 	@Override
@@ -188,8 +191,6 @@ public class Ventana extends JFrame implements IVista, ActionListener,WindowList
 		return this.panelRegistro.getConfirmPassword();
 	}
 
-	
-
 	@Override
 	public int getEdad()
 	{
@@ -214,63 +215,63 @@ public class Ventana extends JFrame implements IVista, ActionListener,WindowList
 	@Override
 	public String getLocacion()
 	{
-	    // TODO Auto-generated method stub
-	    return this.panelCliente.getLocacion();
+		// TODO Auto-generated method stub
+		return this.panelCliente.getLocacion();
 	}
 
 	@Override
 	public String getPuesto()
 	{
-	    // TODO Auto-generated method stub
-	    return this.panelCliente.getPuesto();
+		// TODO Auto-generated method stub
+		return this.panelCliente.getPuesto();
 	}
 
 	@Override
 	public String getExperiencia()
 	{
-	    // TODO Auto-generated method stub
-	    return this.panelCliente.getExperiencia();
+		// TODO Auto-generated method stub
+		return this.panelCliente.getExperiencia();
 	}
 
 	@Override
 	public String getEstudios()
 	{
-	    // TODO Auto-generated method stub
-	    return this.panelCliente.getEstudios();
+		// TODO Auto-generated method stub
+		return this.panelCliente.getEstudios();
 	}
 
 	@Override
 	public String getJornada()
 	{
-	    // TODO Auto-generated method stub
-	    return this.panelCliente.getJornada();
+		// TODO Auto-generated method stub
+		return this.panelCliente.getJornada();
 	}
 
 	@Override
 	public int getRemuneracion()
 	{
-	    // TODO Auto-generated method stub
-	    return this.panelCliente.getRemunearcion();
+		// TODO Auto-generated method stub
+		return this.panelCliente.getRemunearcion();
 	}
 
 	@Override
 	public void actualizaCliente()
 	{
-	    this.panelCliente.actualizaCliente();
+		this.panelCliente.actualizaCliente();
 	}
 
 	@Override
 	public int getLimiteInferior()
 	{
-	    // TODO Auto-generated method stub
-	    return this.panelAdmin.getLimiteInferior();
+		// TODO Auto-generated method stub
+		return this.panelAdmin.getLimiteInferior();
 	}
 
 	@Override
 	public int getLimiteSuperior()
 	{
-	    // TODO Auto-generated method stub
-	    return this.panelAdmin.getLimiteSuperior();
+		// TODO Auto-generated method stub
+		return this.panelAdmin.getLimiteSuperior();
 	}
 
 	@Override
@@ -281,58 +282,59 @@ public class Ventana extends JFrame implements IVista, ActionListener,WindowList
 	}
 
 	@Override
-	public Usuario getCandidato()
+	public Cliente getCandidato()
 	{
-	    // TODO Auto-generated method stub
-	    return this.panelCliente.getCandidato();
+		// TODO Auto-generated method stub
+		return this.panelCliente.getCandidato();
 	}
 
 	@Override
 	public void windowOpened(WindowEvent e)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowClosing(WindowEvent e)
-	{ActionEvent ev=new ActionEvent(this,0, Constantes.CERRARSESION); 
-	this.actionListener.actionPerformed(ev);
-	
-		}
+	{
+		ActionEvent ev = new ActionEvent(this, 0, Constantes.CERRARSESION);
+		this.actionListener.actionPerformed(ev);
+
+	}
 
 	@Override
 	public void windowClosed(WindowEvent e)
 	{
-		
+
 	}
 
 	@Override
 	public void windowIconified(WindowEvent e)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowActivated(WindowEvent e)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeactivated(WindowEvent e)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

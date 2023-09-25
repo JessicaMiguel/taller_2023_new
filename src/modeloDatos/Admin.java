@@ -15,11 +15,6 @@ public class Admin extends Usuario
 		return "Administrador";
 	}
 
-	@Override
-	public double calculaComision(Ticket ticket)
-	{
-	    // TODO Auto-generated method stub
-	    return 0;
-	}
+	
 
 }
