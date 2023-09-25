@@ -15,6 +15,7 @@ import excepciones.NombreUsuarioException;
 import modeloDatos.Usuario;
 import modeloNegocio.Agencia;
 import util.Constantes;
+import util.Mensajes;
 import vista.IOptionPane;
 import vista.IVista;
 import vista.MyJOptionPane;
@@ -58,8 +59,6 @@ public class Controlador implements ActionListener
 	{
 
 	}
-
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -108,8 +107,9 @@ public class Controlador implements ActionListener
 	 * clase Agencia utilizando el método eliminarTicket() de esa instancia. Se
 	 * trata la excepción ImposibleModificarTicketsException Luego, después de
 	 * intentar eliminar el ticket, se llama al método actualizaCliente() de la
-	 * vista para actualizar la interfaz de usuario del cliente.
-	 * Si el tiecket no se puede elimiar muestra un cuadro emergente con el mensaje correspondiente a la excepcion ImposibleModificarTicketsException 
+	 * vista para actualizar la interfaz de usuario del cliente. Si el tiecket no se
+	 * puede elimiar muestra un cuadro emergente con el mensaje correspondiente al
+	 * enumerado Mensajes.ERROR_AGENCIA_EN_CONTRATACION
 	 */
 
 	private void eliminarTicket()
@@ -125,7 +125,6 @@ public class Controlador implements ActionListener
 		this.vista.actualizaCliente();
 	}
 
-	
 	private void seleccionarCandidato()
 	{
 		this.usuario.setCandidato(this.vista.getCandidato());
@@ -134,7 +133,8 @@ public class Controlador implements ActionListener
 
 	/**
 	 * Se encarga de aplicar una promoción en la aplicación y luego mostrar
-	 * información sobre el cliente después de aplicar la promoción en una ventana emergente
+	 * información sobre el cliente (metodo toString()) después de aplicar la
+	 * promoción en una ventana emergente
 	 * 
 	 * 
 	 */
@@ -147,14 +147,16 @@ public class Controlador implements ActionListener
 
 	/**
 	 * Se utiliza para modificar los valores de las variables limiteInferior y
-	 * limiteSuperior en el objeto agencia.
-	 * En caso de error se muestra el mensaje correspondiente en una ventana emergente
+	 * limiteSuperior en el objeto agencia. En caso de error se muestra el mensaje
+	 * correspondiente en una ventana emergente, el cual puede ser:
+	 * Mensajes.LIMITE_REMUNERACION_NEGATIVO o bien,
+	 * Mensajes.LIMITE_REMUNERACION_INVALIDO
 	 * 
 	 */
 
 	public void modificarValorsLimitesRemuneracion()
 	{
-		
+
 		try
 		{
 			agencia.setLimitesRemuneracion(this.vista.getLimiteInferior(), this.vista.getLimiteSuperior());
@@ -170,7 +172,8 @@ public class Controlador implements ActionListener
 	/**
 	 * El método se utiliza para iniciar una nueva ronda de contrataciones en el
 	 * sistema de la agencia, invocando el método correspondiente en la instancia de
-	 * la clase Agencia.
+	 * la clase Agencia. Muestra en una ventana el estado en el que queda la
+	 * agencia, mediante el metdo getEstado()
 	 */
 
 	public void gatillar()
@@ -219,8 +222,9 @@ public class Controlador implements ActionListener
 	 * instancia de agencia. También maneja excepciones del tipo
 	 * ImposibleModificarTicketsException Después de crear el nuevo ticket (ya sea
 	 * de empleado o empleador), se llama al método actualizaCliente() de la vista
-	 * para actualizar la interfaz de usuario del cliente.
-	 * En caso de error se muestra el mensaje correspondiente
+	 * para actualizar la interfaz de usuario del cliente. En caso de error se
+	 * muestra el mensaje correspondiente al enumerado
+	 * Mensajes.ERROR_AGENCIA_EN_CONTRATACION
 	 */
 
 	public void nuevoTicket()
@@ -263,14 +267,15 @@ public class Controlador implements ActionListener
 	 * teléfono y edad).
 	 * 
 	 * Si el registro no es exitoso porque el usuario ya existe entonces se trata la
-	 * excepción NewRegistrerException y se muestra el mensaje de error Si el
-	 * registro no es exitoso porque las contraseñas no coinciden entonces se trata
-	 * la excepción ContraNoCoincideException y se muestra el mensaje de error Si el
-	 * registro es exitoso,se intenta loguear al empleado en el sistema. Si el
-	 * logueo no es exitoso porque la contraseña es incorrecta entonces se trata la
-	 * excepcion ContraException y se muestra el mensaje de error Si el logueo no es
-	 * exitoso porque el usuario no es correcto entonces se trata la excepcion
-	 * NombreUsuarioException y se muestra el mensaje de error
+	 * excepción NewRegistrerException y se muestra el mensaje de error
+	 * correspondiente al enumarado Mensajes.USUARIO_REPETIDO. Si el registro no es
+	 * exitoso porque las contraseñas no coinciden entonces se trata la excepción
+	 * ContraNoCoincideException y se muestra el mensaje de error correspondiente al
+	 * enumerado Mensajes.PASS_NO_COINCIDE. Si el registro no es exitoso porque
+	 * alguno de los parametros requerido es nulo, se trata la excecpcion
+	 * ImposibleCrearEmpleadoException, y se muestra el mensaje de error
+	 * correspondiente al enumerado Mensajes.PARAMETROS_NULOS Si el registro es
+	 * exitoso,se loguea al empleado en el sistema.
 	 * 
 	 * Análogamente para el empleado pero utilizando los datos correspondientes
 	 * (nombre de usuario, contraseña, nombre real, tipo de persona y rubro).
@@ -319,16 +324,15 @@ public class Controlador implements ActionListener
 			this.vista.actualizar(t, usuario);
 		}
 	}
-	
 
 	/**
 	 * Se encarga de autenticar (loguear) a un usuario en la agencia utilizando las
 	 * credenciales ingresadas en la vista
 	 * 
 	 * Si el logueo no es exitoso porque la contraseña es erronea se trata la
-	 * excepcion ContraException y se muestra el mensaje de error Si el logueo no es
-	 * exitoso porque lel usuario no existe se trata la excepcion
-	 * NombreUsuarioException y se muestra el mensaje de error
+	 * excepcion ContraException y se muestra el mensaje de error correspondiente al enumerado Mensajes.PASS_ERRONEO.  Si el logueo no es
+	 * exitoso porque lel usuario no existe se trata la excepcion 
+	 * NombreUsuarioException y se muestra el mensaje de error correspondiente al enumerado Mensajes.USUARIO_DESCONOCIDO.
 	 * 
 	 */
 
