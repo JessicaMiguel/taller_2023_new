@@ -4,7 +4,7 @@ import util.Constantes;
 
 /**
  * Clase que representa un usuario pretenso
- * <b>Todos los setters tienen como precondición , que su parametro es diferente de null</b>
+ * <b>Todos los setters tienen como precondicion , que su parametro es diferente de null</b>
  */
 public class EmpleadoPretenso extends Usuario
 {
@@ -12,7 +12,7 @@ public class EmpleadoPretenso extends Usuario
 	private int edad;
 
 	/**
-	 * <b>pre:</b> Los parámetros String son distintos de null, la edad es mayor que cero.
+	 * <b>pre:</b> Los parametros String son distintos de null, la edad es mayor que cero.
 	 * @param usserName
 	 * @param password
 	 * @param realName
@@ -60,9 +60,9 @@ public class EmpleadoPretenso extends Usuario
 	}
 	
 	/**
-	 * Este método se utiliza para calcular la comisión que un usuario debe recibir según el tipo de puesto en un Ticket y su  puntaje (ver detalles de calculo de comision). 
-	 * <b>Pre: </b> El método requiere un objeto Ticket válido como entrada para realizar los cálculos de comisión. (ver detalles) <br>
-	 * @return double con el valor de la comisión
+	 * Este metodo se utiliza para calcular la comision que un usuario debe recibir segun el tipo de puesto en un Ticket y su  puntaje (ver detalles de calculo de comision). 
+	 * <b>Pre: </b> El metodo requiere un objeto Ticket valido como entrada para realizar los calculos de comision. (ver detalles) <br>
+	 * @return double con el valor de la comision
 	 * @param ticket objeto Ticket de donde se obtiene ell tipo de puesto junior, senior o management
 	 */
 

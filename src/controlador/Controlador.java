@@ -24,25 +24,25 @@ import vista.Ventana;
 /**
  * 
  * Es el controlador de eventos que responde a diferentes acciones realizadas
- * por el usuario en la interfaz gráfica de la aplicación. Realiza acciones como
- * el inicio de sesión, registro, creación de tickets, activación de rondas de
- * contrataciones y otras acciones relacionadas con la lógica de la aplicación.
- * LOGIN: Cuando se recibe este comando, el método login se llama para manejar
- * el proceso de inicio de sesión. La lógica de inicio de sesión se ejecuta en
- * el método login. REG_BUTTON_REGISTRAR: Este comando está relacionado con el
- * proceso de registro de usuarios en la aplicación. Cuando se recibe este
- * comando, se llama al método registrar para gestionar el registro de usuarios.
+ * por el usuario en la interfaz grafica de la aplicacion. Realiza acciones como
+ * el inicio de sesion, registro, creacion de tickets, activacion de rondas de
+ * contrataciones y otras acciones relacionadas con la logica de la aplicacion.
+ * LOGIN: Cuando se recibe este comando, el metodo login se llama para manejar
+ * el proceso de inicio de sesion. La logica de inicio de sesion se ejecuta en
+ * el metodo login. REG_BUTTON_REGISTRAR: Este comando esta relacionado con el
+ * proceso de registro de usuarios en la aplicacion. Cuando se recibe este
+ * comando, se llama al metodo registrar para gestionar el registro de usuarios.
  * CERRARSESION: Cuando se recibe este comando, el usuario actual se desconecta
- * y se guarda el estado de la aplicación en un archivo llamado "Agencia.xml".
- * CONFIRMARNUEVOTICKET: Este comando está relacionado con la confirmación de la
- * creación de un nuevo ticket. Cuando se recibe este comando, se llama al
- * método nuevoTicket para gestionar la creación del ticket. GATILLAR: Cuando se
- * recibe este comando, se activa una ronda de contrataciones en la aplicación
- * llamando al método gatillarRonda del objeto agencia. MODIFICAR_VALORES: Este
- * comando está relacionado con la modificación de valores V1 y V2 en la
- * aplicación en función del tipo de usuario. APLICAR_PROMO: El código llama a
- * un método aplicaPromo y muestra un mensaje con los detalles de un cliente
- * después de aplicar la promoción.
+ * y se guarda el estado de la aplicacion en un archivo llamado "Agencia.xml".
+ * CONFIRMARNUEVOTICKET: Este comando esta relacionado con la confirmacion de la
+ * creacion de un nuevo ticket. Cuando se recibe este comando, se llama al
+ * metodo nuevoTicket para gestionar la creacion del ticket. GATILLAR: Cuando se
+ * recibe este comando, se activa una ronda de contrataciones en la aplicacion
+ * llamando al metodo gatillarRonda del objeto agencia. MODIFICAR_VALORES: Este
+ * comando esta relacionado con la modificacion de valores V1 y V2 en la
+ * aplicacion en funcion del tipo de usuario. APLICAR_PROMO: El codigo llama a
+ * un metodo aplicaPromo y muestra un mensaje con los detalles de un cliente
+ * despues de aplicar la promocion.
  * 
  */
 
@@ -103,10 +103,10 @@ public class Controlador implements ActionListener
 	}
 
 	/**
-	 * Este método tiene como objetivo eliminar un ticket de la instancia de la
-	 * clase Agencia utilizando el método eliminarTicket() de esa instancia. Se
-	 * trata la excepción ImposibleModificarTicketsException Luego, después de
-	 * intentar eliminar el ticket, se llama al método actualizaCliente() de la
+	 * Este metodo tiene como objetivo eliminar un ticket de la instancia de la
+	 * clase Agencia utilizando el metodo eliminarTicket() de esa instancia. Se
+	 * trata la excepcion ImposibleModificarTicketsException Luego, despues de
+	 * intentar eliminar el ticket, se llama al metodo actualizaCliente() de la
 	 * vista para actualizar la interfaz de usuario del cliente. Si el tiecket no se
 	 * puede elimiar muestra un cuadro emergente con el mensaje correspondiente al
 	 * enumerado Mensajes.ERROR_AGENCIA_EN_CONTRATACION
@@ -132,9 +132,9 @@ public class Controlador implements ActionListener
 	}
 
 	/**
-	 * Se encarga de aplicar una promoción en la aplicación y luego mostrar
-	 * información sobre el cliente (metodo toString()) después de aplicar la
-	 * promoción en una ventana emergente
+	 * Se encarga de aplicar una promocion en la aplicacion y luego mostrar
+	 * informacion sobre el cliente (metodo toString()) despues de aplicar la
+	 * promocion en una ventana emergente
 	 * 
 	 * 
 	 */
@@ -170,8 +170,8 @@ public class Controlador implements ActionListener
 	}
 
 	/**
-	 * El método se utiliza para iniciar una nueva ronda de contrataciones en el
-	 * sistema de la agencia, invocando el método correspondiente en la instancia de
+	 * El metodo se utiliza para iniciar una nueva ronda de contrataciones en el
+	 * sistema de la agencia, invocando el metodo correspondiente en la instancia de
 	 * la clase Agencia. Muestra en una ventana el estado en el que queda la
 	 * agencia, mediante el metdo getEstado()
 	 */
@@ -184,9 +184,9 @@ public class Controlador implements ActionListener
 	}
 
 	/**
-	 * El método cerrarSesion() se encarga de cerrar la sesión del usuario actual y
+	 * El metodo cerrarSesion() se encarga de cerrar la sesion del usuario actual y
 	 * guardar el estado actual de la agencia en un archivo antes de finalizar la
-	 * sesión.
+	 * sesion.
 	 * 
 	 */
 
@@ -205,23 +205,23 @@ public class Controlador implements ActionListener
 	}
 
 	/**
-	 * Permite a los usuarios crear nuevos tickets. El método recopila información
+	 * Permite a los usuarios crear nuevos tickets. El metodo recopila informacion
 	 * ingresada por el usuario desde la vista. Estos datos incluyen:
 	 * 
-	 * jornada: La jornada del trabajo. locacion: La locación o lugar donde se
-	 * llevará a cabo el trabajo. estudios: Información sobre los estudios
+	 * jornada: La jornada del trabajo. locacion: La locacion o lugar donde se
+	 * llevara a cabo el trabajo. estudios: Informacion sobre los estudios
 	 * requeridos para el trabajo. puesto: El tipo de puesto de trabajo.
 	 * experiencia: La experiencia previa requerida para el trabajo. remuneracion:
-	 * La remuneración ofrecida para el trabajo. Si tipoUsuario es Empleado,
-	 * intentará crear un nuevo ticket de empleado utilizando los datos recopilados.
-	 * Esto se hace llamando al método crearTicketEmpleado() de la instancia de
-	 * agencia. Si ocurre alguna excepción del tipo
+	 * La remuneracion ofrecida para el trabajo. Si tipoUsuario es Empleado,
+	 * intentara crear un nuevo ticket de empleado utilizando los datos recopilados.
+	 * Esto se hace llamando al metodo crearTicketEmpleado() de la instancia de
+	 * agencia. Si ocurre alguna excepcion del tipo
 	 * ImposibleModificarTicketsException, se trata. Si tipoUsuario es Empleador
-	 * intentará crear un nuevo ticket de empleador utilizando los datos
-	 * recopilados. Esto se hace llamando al método crearTicketEmpleador() de la
-	 * instancia de agencia. También maneja excepciones del tipo
-	 * ImposibleModificarTicketsException Después de crear el nuevo ticket (ya sea
-	 * de empleado o empleador), se llama al método actualizaCliente() de la vista
+	 * intentara crear un nuevo ticket de empleador utilizando los datos
+	 * recopilados. Esto se hace llamando al metodo crearTicketEmpleador() de la
+	 * instancia de agencia. Tambien maneja excepciones del tipo
+	 * ImposibleModificarTicketsException Despues de crear el nuevo ticket (ya sea
+	 * de empleado o empleador), se llama al metodo actualizaCliente() de la vista
 	 * para actualizar la interfaz de usuario del cliente. En caso de error se
 	 * muestra el mensaje correspondiente al enumerado
 	 * Mensajes.ERROR_AGENCIA_EN_CONTRATACION
@@ -257,19 +257,19 @@ public class Controlador implements ActionListener
 	}
 
 	/**
-	 * El método registrar() se encarga de registrar un nuevo usuario (empleado o
-	 * empleador) en la agencia, realizar su inicio de sesión y actualizar la vista
+	 * El metodo registrar() se encarga de registrar un nuevo usuario (empleado o
+	 * empleador) en la agencia, realizar su inicio de sesion y actualizar la vista
 	 * con los detalles del usuario registrado.
 	 * 
 	 * Si el tipo de usuario seleccionado es "Empleado", se realiza lo siguiente: Se
 	 * intenta registrar un empleado en la agencia utilizando los datos
-	 * proporcionados (nombre de usuario, contraseña, nombre real, apellido,
-	 * teléfono y edad).
+	 * proporcionados (nombre de usuario, contrasena, nombre real, apellido,
+	 * telefono y edad).
 	 * 
 	 * Si el registro no es exitoso porque el usuario ya existe entonces se trata la
-	 * excepción NewRegistrerException y se muestra el mensaje de error
+	 * excepcion NewRegistrerException y se muestra el mensaje de error
 	 * correspondiente al enumarado Mensajes.USUARIO_REPETIDO. Si el registro no es
-	 * exitoso porque las contraseñas no coinciden entonces se trata la excepción
+	 * exitoso porque las contrasenas no coinciden entonces se trata la excepcion
 	 * ContraNoCoincideException y se muestra el mensaje de error correspondiente al
 	 * enumerado Mensajes.PASS_NO_COINCIDE. Si el registro no es exitoso porque
 	 * alguno de los parametros requerido es nulo, se trata la excecpcion
@@ -277,8 +277,8 @@ public class Controlador implements ActionListener
 	 * correspondiente al enumerado Mensajes.PARAMETROS_NULOS Si el registro es
 	 * exitoso,se loguea al empleado en el sistema.
 	 * 
-	 * Análogamente para el empleado pero utilizando los datos correspondientes
-	 * (nombre de usuario, contraseña, nombre real, tipo de persona y rubro).
+	 * Analogamente para el empleado pero utilizando los datos correspondientes
+	 * (nombre de usuario, contrasena, nombre real, tipo de persona y rubro).
 	 * 
 	 */
 	public void registrar()
@@ -329,7 +329,7 @@ public class Controlador implements ActionListener
 	 * Se encarga de autenticar (loguear) a un usuario en la agencia utilizando las
 	 * credenciales ingresadas en la vista
 	 * 
-	 * Si el logueo no es exitoso porque la contraseña es erronea se trata la
+	 * Si el logueo no es exitoso porque la contrasena es erronea se trata la
 	 * excepcion ContraException y se muestra el mensaje de error correspondiente al enumerado Mensajes.PASS_ERRONEO.  Si el logueo no es
 	 * exitoso porque lel usuario no existe se trata la excepcion 
 	 * NombreUsuarioException y se muestra el mensaje de error correspondiente al enumerado Mensajes.USUARIO_DESCONOCIDO.

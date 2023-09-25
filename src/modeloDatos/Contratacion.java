@@ -6,12 +6,12 @@ import util.Constantes;
 
 /**
  * Clase que representa una contratacion entre un empleado y un empleador con su correspondiente fecha de creacion
- *<b>Todos los setters tienen como precondición , que su parametro es diferente de null</b>
+ *<b>Todos los setters tienen como precondicion , que su parametro es diferente de null</b>
  */
 public class Contratacion
 {
 	private EmpleadoPretenso empleado;
-	private Empleador empleador;
+	private Empleador empleador; 
 	private GregorianCalendar fecha;
 
 	public Contratacion()

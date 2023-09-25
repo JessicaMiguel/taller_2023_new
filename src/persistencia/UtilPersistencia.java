@@ -20,12 +20,12 @@ return agenciaDTO;
 }
 
 /**
- * Este método permite convertir un objeto Agencia en un objeto AgenciaDTO para
- * facilitar su almacenamiento o transferencia a través de una capa de persistencia.
- * El método copia los del objeto Agencia en el objeto AgenciaDTO. 
+ * Este metodo permite convertir un objeto Agencia en un objeto AgenciaDTO para
+ * facilitar su almacenamiento o transferencia a traves de una capa de persistencia.
+ * El metodo copia los del objeto Agencia en el objeto AgenciaDTO. 
  * Estos atributos incluyen cosas como las comisiones para usuarios, 
  * la cantidad de contrataciones, la lista de empleadores, la lista de empleados, 
- * el estado de contratación, el límite superior y el inferior de remuneración.
+ * el estado de contratacion, el limite superior y el inferior de remuneracion.
  * 
  * @param agenciaDTO objeto AgennciaDTO
  */

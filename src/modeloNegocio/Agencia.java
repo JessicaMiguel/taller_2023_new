@@ -66,9 +66,9 @@ public class Agencia
     /**
      * Especifica los limites de remuneracion pretendida para determinar los tres
      * rangos posibles <br>
-     * Rango 1 si remuneracion pretendida < limite Inferior <br>
-     * Rango 2 si limite inferior <= remuneracion pretendida < limite superior <br>
-     * Rango 3 si limite superior < remuneracion pretendida
+     * Rango 1 si remuneracion pretendida menor a limite Inferior <br>
+     * Rango 2 si limite inferior menor o igual a remuneracion pretendida menor a limite superior <br>
+     * Rango 3 si limite superior menor a remuneracion pretendida
      * 
      * @param limiteInferior
      * @param limiteSuperior
@@ -94,21 +94,21 @@ public class Agencia
     }
 
     /**
-     * Dependiendo del valor del atributo estadoContratacion, este método realiza
+     * Dependiendo del valor del atributo estadoContratacion, este metodo realiza
      * diferentes acciones: Si estadoContratacion es verdadero, se buscan matcheos
-     * entre empleadores y empleados para trabajos disponibles. También, se penaliza
+     * entre empleadores y empleados para trabajos disponibles. Tambien, se penaliza
      * a los empleadores que tienen un tocket asociado pero no fueron elegidos en
-     * una ronda de contratación, y "limpia" o elimina todas las conexiones entre
-     * candidatos y puestos de trabajo después de una ronda de contratación. Esto
-     * prepara el sistema para una nueva ronda de contratación donde los candidatos
+     * una ronda de contratacion, y "limpia" o elimina todas las conexiones entre
+     * candidatos y puestos de trabajo despues de una ronda de contratacion. Esto
+     * prepara el sistema para una nueva ronda de contratacion donde los candidatos
      * pueden postularse nuevamente a nuevos puestos. Si estadoContratacion es
      * falso, se generan nuevos postulantes para los trabajos disponibles y se
      * calculan los premios o castigos basados en el resultado de la ronda anterior.
-     * Al final del método, se invierte el valor de estadoContratacion, lo que
-     * significa que se alternará entre rondas de contratación y generación de
-     * candidatos en llamadas sucesivas a este método. Dependiendo del
-     * estadoContratacion se controla el flujo de una ronda de contratación y la
-     * generación de candidatos <br>
+     * Al final del metodo, se invierte el valor de estadoContratacion, lo que
+     * significa que se alternara entre rondas de contratacion y generacion de
+     * candidatos en llamadas sucesivas a este metodo. Dependiendo del
+     * estadoContratacion se controla el flujo de una ronda de contratacion y la
+     * generacion de candidatos <br>
      * 
      */
 
@@ -143,10 +143,10 @@ public class Agencia
     }
 
     /**
-     * Este método penaliza a los empleadores que tienen un ticket asociado pero no
-     * fueron elegidos en una ronda de contratación.
+     * Este metodo penaliza a los empleadores que tienen un ticket asociado pero no
+     * fueron elegidos en una ronda de contratacion.
      * 
-     * <b>Pre: </b> Debe haber objetos válidos y registrados en las colecciones<br>
+     * <b>Pre: </b> Debe haber objetos validos y registrados en las colecciones<br>
      * empleadores y empleados. <br>
      */
 
@@ -173,8 +173,8 @@ public class Agencia
     }
 
     /**
-     * Este método otorga premios y castigos a los usuarios que participan en el
-     * proceso de selección. <b>Pre: </b>Las listas de postulantes están ordenadas
+     * Este metodo otorga premios y castigos a los usuarios que participan en el
+     * proceso de seleccion. <b>Pre: </b>Las listas de postulantes estan ordenadas
      * 
      */
 
@@ -234,17 +234,17 @@ public class Agencia
     }
 
     /**
-     * Está relacionado con la ocurrencia de un "match" entre un empleador y un
+     * Esta relacionado con la ocurrencia de un "match" entre un empleador y un
      * empleado pretenso, lo que implica que un empleado potencial ha sido
      * seleccionado por un empleador. Realiza ajustes en los puntajes y las
      * comisiones, y marca a ambos usuarios como no disponibles para futuros matches
-     * o contrataciones. <b>Pre: </b> Empleado y empleador deben ser válidos y estar
+     * o contrataciones. <b>Pre: </b> Empleado y empleador deben ser validos y estar
      * registrados en el sistema <br>
-     * Crea una nueva instancia de Contratacion que representa la contratación o
+     * Crea una nueva instancia de Contratacion que representa la contratacion o
      * emparejamiento entre el empleador y el empleado. Incrementa el puntaje del
      * empleado en 10 puntos Incrementa el puntaje del empleador en 50 puntos
-     * Calcula las comisiones para el empleado y el empleador en función del Ticket
-     * asociado al empleador. Empleado y empleador ya no están disponibles para
+     * Calcula las comisiones para el empleado y el empleador en funcion del Ticket
+     * asociado al empleador. Empleado y empleador ya no estan disponibles para
      * futuros emparejamientos o contrataciones.<br>
      * 
      * @param empleador: Objeto empleador con quien el empleado pretenso hace match
@@ -267,10 +267,10 @@ public class Agencia
     }
 
     /**
-     * Este método se encarga de calcular y asignar listas de postulantes a los
-     * Empleadores y EmpleadoPretenso en función de sus Ticket y las comparaciones
+     * Este metodo se encarga de calcular y asignar listas de postulantes a los
+     * Empleadores y EmpleadoPretenso en funcion de sus Ticket y las comparaciones
      * de puntajes entre ellos. <b>Pre: </b> Listas de empleados y empleadores con
-     * elementos válidos <br>
+     * elementos validos <br>
      * Establece la lista de EmpleadoPretenso ordenados de mayor a menor como la
      * lista de postulantes para el Empleador Establece una lista de Empleadores
      * ordenada por puntaje de mayor a menor de compatibilidad y la establece como
@@ -336,13 +336,13 @@ public class Agencia
     }
 
     /**
-     * Tiene como objetivo guardar la información de una agencia en un archivo
-     * utilizando un mecanismo de persistencia. Este archivo contendrá la
-     * información necesaria para restaurar la agencia en un estado similar en el
-     * futuro si es necesario. <b>Pre: </b> Nombre de archivo válido <br>
+     * Tiene como objetivo guardar la informacion de una agencia en un archivo
+     * utilizando un mecanismo de persistencia. Este archivo contendra la
+     * informacion necesaria para restaurar la agencia en un estado similar en el
+     * futuro si es necesario. <b>Pre: </b> Nombre de archivo valido <br>
      * Se guarda el estado de la agencia en el archivo <br>
      * 
-     * @param nombreArchivo String, con el nombre del archivo donde se almacenará la
+     * @param nombreArchivo String, con el nombre del archivo donde se almacenara la
      *                      agencia
      * @throws IOException Se lanza en caso de error de entrada/salida
      */
@@ -359,7 +359,7 @@ public class Agencia
 
     /**
      * Se encarga de crear un nuevo ticket para un empleado con los datos enviados
-     * por parámetros. Si el Empleado tiene un ticket activo, este sera eliminado.
+     * por parametros. Si el Empleado tiene un ticket activo, este sera eliminado.
      * 
      *  <b>Pre:</b> El usuario debe ser un empleado <br>
      * @param locacion     String con la locacion del empleado
@@ -369,10 +369,10 @@ public class Agencia
      * @param experiencia  String experiencia del empleado
      * @param estudios     String estudios que posee el empleado
      * @param usuario      objeto Usuario del ticket
-     * @throws ImposibleModificarTicketsException lanza una excepción
+     * @throws ImposibleModificarTicketsException lanza una excepcion
      *                                            ImposibleModificarTicketsException
-     *                                            si el estado de contratación no
-     *                                            está en un estado válido <br>
+     *                                            si el estado de contratacion no
+     *                                            esta en un estado valido <br>
      *                                           
      *                                            
      */
@@ -389,20 +389,20 @@ public class Agencia
 
     /**
      * Se encarga de crear un nuevo ticket para un empleador. Si el Empleador tiene un ticket activo, este sera eliminado.
-     * </b> pre</b> El usuario debe ser un empleador (no un empleado) <br>
+     * <b>pre: </b> El usuario debe ser un empleador (no un empleado) <br>
      * 
      * @param locacion     String locacion de la oferta del empleador
-     * @param remuneracion int remuneración ofrecida por el empleador
+     * @param remuneracion int remuneracion ofrecida por el empleador
      * @param jornada      String jornada del puesto de trabajo que abre el
      *                     empleador
-     * @param puesto       String tipo de puesto de la posición
+     * @param puesto       String tipo de puesto de la posicion
      * @param experiencia  String experiencia requerida para el puesto
      * @param estudios     String estudios requeridos para el puesto
-     * @param usuario      objeto Usuario a quien se le creará el ticket
-     * @throws ImposibleModificarTicketsException lanza una excepción
+     * @param usuario      objeto Usuario a quien se le creara el ticket
+     * @throws ImposibleModificarTicketsException lanza una excepcion
      *                                            ImposibleModificarTicketsException
-     *                                            si el estado de contratación no
-     *                                            está en un estado válido 
+     *                                            si el estado de contratacion no
+     *                                            esta en un estado valido 
      *
      */
 
@@ -422,13 +422,13 @@ public class Agencia
      * 
      * @param nombreUsuario String con el nombre de usuario del empleado
      * @param pass          String password generada para el empleado
-     * @param nombreReal    String Nombre real del empleado que se está registrando
-     * @param apellido      String con el apellido del empleado que está registrando
+     * @param nombreReal    String Nombre real del empleado que se esta registrando
+     * @param apellido      String con el apellido del empleado que esta registrando
      * @param telefono      String con el telefono del empleado
-     * @param edad          int con la edad del empleado que se está registrando
+     * @param edad          int con la edad del empleado que se esta registrando
      * @return objeto Usuario que es el empleado registrado
      * @throws NewRegisterException            se lanza para indicar que el nombre
-     *                                         de usuario ya está en uso.
+     *                                         de usuario ya esta en uso.
      * @throws ImposibleCrearEmpleadoException Se lanza en caso de que
      *                                         nombreUsuario, pass, nombreReal,
      *                                         apellido, telefono sean nulos
@@ -455,18 +455,18 @@ public class Agencia
      * 
      * @param nombreUsuario String nombre de usuario para el empleador que se quiere
      *                      registrar
-     * @param pass          String password para el empleador que se está
+     * @param pass          String password para el empleador que se esta
      *                      registrando
-     * @param nombreReal    String nombre real del empleador que se está registrando
-     * @param telefono      String telefono del empleador que se está registrando
+     * @param nombreReal    String nombre real del empleador que se esta registrando
+     * @param telefono      String telefono del empleador que se esta registrando
      * @param tipoPersona   String tipo de persona: Fisica o Juridica para el
-     *                      empleador que se está registrando
-     * @param rubro         String rubro del empleador que se está registrando
+     *                      empleador que se esta registrando
+     * @param rubro         String rubro del empleador que se esta registrando
      * @return Objeto usuario con el empleador registrado
      * @throws NewRegisterException             Se lanza en caso de que ya exista un
      *                                          empleador registrado con el mismo
      *                                          nombreUsuario.
-     * @throws ImposibleCrearEmpleadorException lanza una excepción
+     * @throws ImposibleCrearEmpleadorException lanza una excepcion
      *                                          ImposibleCrearEmpleadorException en
      *                                          caso de que nombreUsuario, pass,
      *                                          nombreReal, telefono, tipoPersona, o
@@ -494,20 +494,20 @@ public class Agencia
     }
 
     /**
-     * Se encarga de realizar el inicio de sesión de un usuario en la aplicación, ya
+     * Se encarga de realizar el inicio de sesion de un usuario en la aplicacion, ya
      * sean empleados, empleadores o administradores
-     * Si el inicio de sesión es exitoso, el usuario quedará logeado en la aplicación y el atributo tipo de usuario sera seteado: 0 para Empleado, 1 para Empleador, 2 para Administrador 
+     * Si el inicio de sesion es exitoso, el usuario quedara logeado en la aplicacion y el atributo tipo de usuario sera seteado: 0 para Empleado, 1 para Empleador, 2 para Administrador 
      * 
      * @param nombreUsuario String: nombre de usuario de quien se quiere loguear
-     * @param pass          String: contraseña del usuario que se quiere loguear
+     * @param pass          String: contrasena del usuario que se quiere loguear
      * @return Se retorna un objeto Usuario con el objeto usuario
-     * @throws ContraException        si la contraseña no es correcta se lanza una
-     *                                excepción del tipo ContraException
-     * @throws NombreUsuarioException si no se encontró un empleado, un empleador o
+     * @throws ContraException        si la contrasena no es correcta se lanza una
+     *                                excepcion del tipo ContraException
+     * @throws NombreUsuarioException si no se encontro un empleado, un empleador o
      *                                un administrador con el nombreUsuario
-     *                                proporcionado, se lanza una excepción
+     *                                proporcionado, se lanza una excepcion
      *                                NombreUsuarioException <b>Pre: </b> nombre de
-     *                                usuario y contraseña distintos de null <br>
+     *                                usuario y contrasena distintos de null <br>
      *                                
      */
 
@@ -550,11 +550,11 @@ public class Agencia
     }
 
     /**
-     * Busca la contratación asociada a un Empleador específico en la lista de
+     * Busca la contratacion asociada a un Empleador especifico en la lista de
      * contrataciones de la agencia.
      * 
-     * @param empleador objeto Empleador de quien se quiere obtener la contratación.
-     * @return objeto Usuario con la contratación. <b>Pre: </b> empleador distinto
+     * @param empleador objeto Empleador de quien se quiere obtener la contratacion.
+     * @return objeto Usuario con la contratacion. <b>Pre: </b> empleador distinto
      *         de null y registrado en el sistema<br>
      *         
      */
@@ -580,13 +580,13 @@ public class Agencia
      * serializado
      * 
      * @param nombreArchivo String con el nombre del archivo
-     * @throws IOException            Esta excepción se lanza cuando ocurren
-     *                                problemas durante la operación de lectura del
+     * @throws IOException            Esta excepcion se lanza cuando ocurren
+     *                                problemas durante la operacion de lectura del
      *                                archivo
-     * @throws ClassNotFoundException Esta excepción se lanza si la clase AgenciaDTO
+     * @throws ClassNotFoundException Esta excepcion se lanza si la clase AgenciaDTO
      *                                no se encuentra en el part durante la
-     *                                deserialización del objeto. <b>Pre: </b> El
-     *                                método debe recibir el nombre de un archivo
+     *                                deserializacion del objeto. <b>Pre: </b> El
+     *                                metodo debe recibir el nombre de un archivo
      *                                distinto de null<br>
      *                                
      */
@@ -599,12 +599,12 @@ public class Agencia
     }
 
     /**
-     * Busca la contratación asociada a un EmpleadoPretenso específico en la lista
+     * Busca la contratacion asociada a un EmpleadoPretenso especifico en la lista
      * de contrataciones de la agencia.
      * 
-     * @param el Objeto EmpleadoPretenso de quien se quiere obtener la contratación
-     * @return objeto usuario con el Empleador encontrado si no se encontró ninguna
-     *         contratación que involucre al EmpleadoPretenso especificado. <b>Pre:
+     * @param ep el Objeto EmpleadoPretenso de quien se quiere obtener la contratacion
+     * @return objeto usuario con el Empleador encontrado si no se encontro ninguna
+     *         contratacion que involucre al EmpleadoPretenso especificado. <b>Pre:
      *         </b> empleado distinto de null y registrado en el sistema<br>
      */
 
@@ -626,18 +626,18 @@ public class Agencia
     }
 
     /**
-     * El método aplicaPromo se utiliza para seleccionar y beneficiar a un cliente
-     * específico (ya sea un Empleador o un EmpleadoPretenso)
-     * Si promoPorListaDePostulantes es true, la promoción se
-     *         basará en el tamaño de las listas de postulantes de los Empleadores y
-     *         EmpleadoPretenso. Si promoPorListaDePostulantes es false, se basará
+     * El metodo aplicaPromo se utiliza para seleccionar y beneficiar a un cliente
+     * especifico (ya sea un Empleador o un EmpleadoPretenso)
+     * Si promoPorListaDePostulantes es true, la promocion se
+     *         basara en el tamano de las listas de postulantes de los Empleadores y
+     *         EmpleadoPretenso. Si promoPorListaDePostulantes es false, se basara
      *         simplemente en la cantidad total de Empleadores y EmpleadoPretenso
      *         sin considerar las listas de postulantes
      * 
-     * @param promoPorListaDePostulantes Este parámetro es un booleano que controla
-     *                                   el tipo de promoción que se aplicará.
-     * @return objeto Usuario En resumen, el método aplicaPromo se utiliza para
-     *         seleccionar y beneficiar a un cliente específico (ya sea un Empleador
+     * @param promoPorListaDePostulantes Este parametro es un booleano que controla
+     *                                   el tipo de promocion que se aplicara.
+     * @return objeto Usuario En resumen, el metodo aplicaPromo se utiliza para
+     *         seleccionar y beneficiar a un cliente especifico (ya sea un Empleador
      *         o un EmpleadoPretenso) <b>Pre: </b> promoPorListaDePostulantes es
      *         true o false <br>
      *         
@@ -694,8 +694,8 @@ public class Agencia
     }
 
     /**
-     * Se utiliza para cerrar la sesión de un usuario en la aplicación. Después de ejecutar el método, no habrá un usuario logeado en la
-     * aplicación <br>
+     * Se utiliza para cerrar la sesion de un usuario en la aplicacion. Despues de ejecutar el metodo, no habra un usuario logeado en la
+     * aplicacion <br>
      * 
      */
 
@@ -753,12 +753,12 @@ public class Agencia
 
     /**
      * Elimina el ticlet del usuario logueado en 
-     * <br><b><pre:></b> Hay un usuario logueado en la aplicacion
+     * <br><b>pre:</b> Hay un usuario logueado en la aplicacion
      * <br>
-     * @throws ImposibleModificarTicketsException lanza una excepción
+     * @throws ImposibleModificarTicketsException lanza una excepcion
      *                                            ImposibleModificarTicketsException
-     *                                            si el estado de contratación no
-     *                                            está en un estado válido
+     *                                            si el estado de contratacion no
+     *                                            esta en un estado valido
      */
     public void eliminarTicket() throws ImposibleModificarTicketsException
     {

@@ -4,7 +4,7 @@ import util.Constantes;
 
 /**
  * Clase que representa un Usuario de tipo Empleador.
- * <b>Todos los setters tienen como precondición, que su parametro es diferente de null. Rubro y tipo_persona son de los tipos esperados.</b>
+ * <b>Todos los setters tienen como precondicion, que su parametro es diferente de null. Rubro y tipo_persona son de los tipos esperados.</b>
  */
 public class Empleador extends Usuario
 {
@@ -56,10 +56,10 @@ public class Empleador extends Usuario
 	
 	
 	/**
-	 * Este método se utiliza para calcular la comisión que un usuario debe recibir según el tipo de puesto en un Ticket y su  puntaje  (ver detalles de calculo de comision). 
-	 * <b>Pre: </b> El método requiere un objeto Ticket válido como entrada para realizar los cálculos de comisión. <br>
+	 * Este metodo se utiliza para calcular la comision que un usuario debe recibir segun el tipo de puesto en un Ticket y su  puntaje  (ver detalles de calculo de comision). 
+	 * <b>Pre: </b> El metodo requiere un objeto Ticket valido como entrada para realizar los calculos de comision. <br>
 	 * 
-	 * @return double con el valor de la comisión
+	 * @return double con el valor de la comision
 	 * @param ticket objeto Ticket de donde se obtiene el rubro comercio internacional, comercio local o comercio local
 	 */
 

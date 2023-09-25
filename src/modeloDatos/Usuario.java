@@ -7,7 +7,7 @@ import modeloNegocio.UsuarioPuntaje;
 
 /**
  * Clas abstracta que representa los Usuarios. Tanto Administradores, Empleados Pretensos o EMpleadores.
- * <b>Todos los setters tienen como precondición , que su parametro es diferente de null</b>
+ * <b>Todos los setters tienen como precondicion , que su parametro es diferente de null</b>
  */
 public abstract class Usuario
 {
@@ -29,7 +29,7 @@ public abstract class Usuario
 
 
 	/**
-	 * <b>pre:</b> candidato!= null, candidato es de un tipo de Usuario válido (EmpleadoPretenso para un Empleador y viceversa)
+	 * <b>pre:</b> candidato!= null, candidato es de un tipo de Usuario valido (EmpleadoPretenso para un Empleador y viceversa)
 	 * @param candidato Candidato para realizar la contratacion
 	 */
 	public void setCandidato(Usuario candidato)
@@ -39,9 +39,9 @@ public abstract class Usuario
 
 
 	/**
-	 * <b>pre:</b> Los parámetros son distintos de null.
+	 * <b>pre:</b> Los parametros son distintos de null.
 	 * @param usserName Nombre de usuario
-	 * @param password  Contraseña
+	 * @param password  Contrasena
 	 * @param realName  Nombre Real del usuario
 	 * @param telefono  Telefono o celular del usuario
 	 */
@@ -69,7 +69,7 @@ public abstract class Usuario
 
 	/**
 	 * <b>pre:</b> listaDePostulantes es diferente de null, los postulantes son de tipo valido (EmpleadorPretensos para Empleadores y viceversa) 
-	 * @param listaDePostulantes ArrayList ordenado por puntaje de los postulantes para realizar la contratación
+	 * @param listaDePostulantes ArrayList ordenado por puntaje de los postulantes para realizar la contratacion
 	 */
 	public void setListaDePostulantes(ArrayList<UsuarioPuntaje> listaDePostulantes)
 	{

@@ -7,7 +7,7 @@ import util.Constantes;
 
 /**
  * clase que representa un ticket de empleo pretendido
- * <b>Todos los setters de tipo String tienen como precondición , que su parametro es diferente de null y son del tipo esperado contemplado en la clase Constantes
+ * <b>Todos los setters de tipo String tienen como precondicion , que su parametro es diferente de null y son del tipo esperado contemplado en la clase Constantes
  *. Remuneracion es mayor que cero. </b>
  */
 public class Ticket

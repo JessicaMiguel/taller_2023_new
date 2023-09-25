@@ -16,7 +16,7 @@ import util.Constantes;
 
 
 /**
- *  Clase que representa la Ventana en la aplicaicón. En cada sesión, las ventanas aparecen limpias.
+ *  Clase que representa la Ventana en la aplicaicion. En cada sesion, las ventanas aparecen limpias.
  * @author
  *
  */
