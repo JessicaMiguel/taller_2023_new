@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 /**
- * Clase abstracta que representa los Usuarios. Tanto Administradores, Empleados Pretensos o Empleadores.
- * <b>Todos los setters tienen como precondicion , que su parametro es diferente de null</b>
+ * Clase abstracta que representa los Clientes, los cuales podran ser, Empleados Pretensos o Empleadores.<br>
+ * Los atributos ticket y listaDePostulantes pueden ser null<br>
+ * El atributo <b>puntaje</b> puede tomar cualquier valor numerico (tanto positivo, cero, o negativo)<br>
+ * <b>Todos los setters tienen como precondicion , que su parametro es diferente de null</b><br>
+ * 
+ * 
  */
 public abstract class Cliente extends Usuario
 {

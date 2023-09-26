@@ -42,8 +42,11 @@ import vista.Ventana;
  * comando esta relacionado con la modificacion de valores V1 y V2 en la
  * aplicacion en funcion del tipo de usuario. APLICAR_PROMO: El codigo llama a
  * un metodo aplicaPromo y muestra un mensaje con los detalles de un cliente
- * despues de aplicar la promocion.
- * <b>Invariante de clase, <br>Los atributos vista y myOptionPane son diferentes de null <br>El atributo tipoUsuario es siempre igual a 0, 1 o 2 </b>
+ * despues de aplicar la promocion.<br>
+ * El atributo usuario podria ser null en el caso de que no haya un usuario logueado<br>
+ *  <b>Invariante de clase</b>, <br>
+ * Los atributos vista y myOptionPane son diferentes de null <br>
+ * 
  * 
  */
 
@@ -53,7 +56,6 @@ public class Controlador implements ActionListener
 	private IOptionPane myOptionPane = new MyJOptionPane();
 	private Agencia agencia = Agencia.getInstance();
 	private Usuario usuario = null;
-	private int tipoUsuario = 0;
 	private String nombreArchivo = "Agencia.xml";
 
 	public Controlador()
@@ -181,7 +183,7 @@ public class Controlador implements ActionListener
 	public void gatillar()
 	{
 		agencia.gatillarRonda();
-		this.vista.actualizar(tipoUsuario, usuario);
+		this.vista.actualizar(Agencia.getInstance().getTipoUsuario(), usuario);
 		this.myOptionPane.ShowMessage(Agencia.getInstance().getEstado());
 	}
 
@@ -238,7 +240,7 @@ public class Controlador implements ActionListener
 		String puesto = this.vista.getPuesto();
 		String experiencia = this.vista.getExperiencia();
 		int remuneracion = this.vista.getRemuneracion();
-		if (this.tipoUsuario == 0)
+		if (Agencia.getInstance().getTipoUsuario() == 0)
 			try
 			{
 				agencia.crearTicketEmpleado(locacion, remuneracion, jornada, puesto, experiencia, estudios, cliente);
@@ -246,7 +248,7 @@ public class Controlador implements ActionListener
 			{
 				this.myOptionPane.ShowMessage(e.getMessage());
 			}
-		else if (this.tipoUsuario == 1)
+		else if (Agencia.getInstance().getTipoUsuario() == 1)
 			try
 			{
 				agencia.crearTicketEmpleador(locacion, remuneracion, jornada, puesto, experiencia, estudios, cliente);
@@ -344,8 +346,8 @@ public class Controlador implements ActionListener
 		try
 		{
 			this.usuario = this.agencia.login(this.vista.getUsserName(), this.vista.getPassword());
-			this.tipoUsuario = this.agencia.getTipoUsuario();
-			this.vista.actualizar(this.tipoUsuario, usuario);
+			
+			this.vista.actualizar(Agencia.getInstance().getTipoUsuario(), usuario);
 
 		} catch (ContraException e)
 		{

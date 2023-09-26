@@ -4,7 +4,10 @@ package modeloDatos;
  * Clase que representa un Cliente con su corespondiente puntaje obtenido en una busqueda laboral
  * El objeto es Comparable en forma descendente por su puntaje obtenido.
  * Todos los setters tienen como precondicion , que su parametro es diferente de null
- * <b>Invariante de clase</b>cliente es distinto de null<br>
+ * <b>Invariante de clase</b><br>
+ * cliente es distinto de null<br>
+ * puntaje puede tomar cualquier valor , tanto negativo, cero o positivo<br>
+ * 
  */
 public class ClientePuntaje implements Comparable
 {

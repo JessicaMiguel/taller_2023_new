@@ -3,8 +3,8 @@ package modeloDatos;
 import util.Constantes;
 
 /**
- * Clase que representa un Usuario de tipo Empleador.
- * <b>Todos los setters tienen como precondicion, que su parametro es diferente de null. Rubro y tipo_persona son de los tipos esperados.</b>
+ * Clase que representa un Usuario de tipo Empleador.<br>
+ * <b>Todos los setters tienen como precondicion, que su parametro es diferente de null. Rubro y tipo_persona son de los tipos esperados (contemplados en la clase Constantes).</b>
  */
 public class Empleador extends Cliente
 {

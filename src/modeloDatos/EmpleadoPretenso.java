@@ -3,8 +3,11 @@ package modeloDatos;
 import util.Constantes;
 
 /**
- * Clase que representa un usuario pretenso
- * <b>Todos los setters tienen como precondicion , que su parametro es diferente de null</b>
+ * Clase que representa un usuario pretenso<br>
+ * <b>Todos los setters tienen como precondicion , que su parametro es diferente de null</b><br>
+ * <b>Invariante de clase</b><br>
+ * El atributo apellido es diferente de null<br>
+ * El atributo edad es siempre positivo.
  */
 public class EmpleadoPretenso extends Cliente
 {
@@ -43,6 +46,10 @@ public class EmpleadoPretenso extends Cliente
 		return edad;
 	}
 
+	/**
+	 * <b>Pre: </b>Edad es un valor positivo<br>
+	 * @param edad edad el empleado pretenso (siempre positiva).
+	 */
 	public void setEdad(int edad)
 	{
 		this.edad = edad;

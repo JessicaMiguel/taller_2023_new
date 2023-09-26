@@ -6,11 +6,11 @@ import modeloNegocio.Agencia;
 import util.Constantes;
 
 /**
- * clase que representa un ticket de empleo pretendido
- * <b>Todos los setters de tipo String tienen como precondicion , que su parametro es diferente de null y son del tipo esperado contemplado en la clase Constantes
- * <br>Remuneracion es mayor que cero. </b>
- * <b>Invariante de clase, Todos los setters de tipo String tienen como precondicion , que su parametro es diferente de null y son del tipo esperado contemplado en la clase Constantes
- * <br>Remuneracion es mayor que cero.</b>
+ * Clase que representa un ticket de empleo pretendido<br>
+ * <b>Todos los setters de tipo String tienen como precondicion , que su parametro es diferente de null y son del tipo esperado contemplado en la clase Constantes</b><br>
+ * <b>Invariante de clase:</b><br>
+ * Todos los atributos de tipo String son diferentes de null y son del tipo esperado contemplado en la clase Constantes<br>
+ * Remuneracion es mayor que cero.
  */
 public class Ticket
 {
@@ -112,6 +112,10 @@ public class Ticket
 		return remuneracion;
 	}
 
+	/**
+	 * <b>Pre: </b>remuneracion es mayor que cero<br>
+	 * @param remuneracion
+	 */
 	public void setRemuneracion(int remuneracion)
 	{
 		this.remuneracion = remuneracion;

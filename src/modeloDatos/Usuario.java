@@ -2,7 +2,8 @@ package modeloDatos;
 /**
  * Clase abstracta que representa los Usuarios. Tanto Administradores, Empleados Pretensos o Empleadores.
  * <b>Todos los setters tienen como precondicion , que su parametro es diferente de null</b>
- * <b>Invariante de clases, usserName, password, telefono y realName son diferentes de null</b>
+ * <b>Invariante de clases:</b><br>
+ * Los atributos usserName, password, telefono y realName son diferentes de null<br>
  */
 
 public class Usuario
