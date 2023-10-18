@@ -300,8 +300,8 @@ public class PanelRegistro extends PanelAgencia
 	
 	this.setActionAndName(this.rdbtnFisica, Constantes.REG_RADIO_FISICA);
 	this.setActionAndName(this.rdbtnJuridica, Constantes.REG_RADIO_JURIDICA);
-	
-	
+	this.setActionAndName(rdbtnEmpleado, Constantes.EMPLEADO);
+	this.setActionAndName(rdbtnEmpleador, Constantes.EMPLEADOR);
 	this.addActionListener(actionListener);
 
     }

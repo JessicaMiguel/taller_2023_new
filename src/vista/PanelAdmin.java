@@ -169,7 +169,10 @@ public class PanelAdmin extends PanelAgencia
 		this.setActionAndName(this.btnPromo, Constantes.APLICAR_PROMO);
 		this.setActionAndName(this.chckbxPorPostulantes, Constantes.CHECK_BOX_LISTA_POSTULANTES);
 		this.setActionAndName(btnCambiar, Constantes.MODIFICAR_VALORES);
-
+		this.textFieldInferior.setName(Constantes.TEXTO_INFERIOR);
+		this.textFieldSuperior.setName(Constantes.TEXTO_SUPERIOR);
+		this.listEmpleadores.setName(Constantes.LISTA_EMPLEADORES);
+		this.listEmpleados.setName(Constantes.LISTA_EMPLEADOS);
 		this.textFieldInferior.addKeyListener(this);
 		this.textFieldSuperior.addKeyListener(this);
 		this.actualizarListas();

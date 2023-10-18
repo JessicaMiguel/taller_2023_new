@@ -72,7 +72,15 @@ public class Constantes
 	public static final String ELIMINAR_TICKET = "ELIMINAR_TICKET";
 
 	public static final String CERRARSESION = "CERRARSESION";
-
+	public static final String LISTA_CANDIDATOS = "LISTA_CANDIDATOS";
+	
+	
 	public static final DateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
+	public static final String TEXT_AREA_RESULTADOS = "TEXT_AREA_RESULTADOS";
+	public static final String TEXT_AREA_TICKET = "TEXT_AREA_TICKET";
+	public static final String TEXTO_INFERIOR = "TEXTO_INFERIOR";
+	public static final String TEXTO_SUPERIOR = "TEXTO_SUPERIOR";
+	public static final String LISTA_EMPLEADORES = "LISTA_EMPLEADORES";
+	public static final String LISTA_EMPLEADOS = "LISTA_EMPLEADOS";
 
 }
