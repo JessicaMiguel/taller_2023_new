@@ -43,8 +43,9 @@ import vista.Ventana;
  * aplicacion en funcion del tipo de usuario. APLICAR_PROMO: El codigo llama a
  * un metodo aplicaPromo y muestra un mensaje con los detalles de un cliente
  * despues de aplicar la promocion.<br>
- * El atributo usuario podria ser null en el caso de que no haya un usuario logueado<br>
- *  <b>Invariante de clase</b>, <br>
+ * El atributo usuario podria ser null en el caso de que no haya un usuario
+ * logueado<br>
+ * <b>Invariante de clase</b>, <br>
  * Los atributos vista y myOptionPane son diferentes de null <br>
  * 
  * 
@@ -115,7 +116,7 @@ public class Controlador implements ActionListener
 	 * enumerado Mensajes.ERROR_AGENCIA_EN_CONTRATACION
 	 */
 
-	private void eliminarTicket()
+	public void eliminarTicket()
 	{
 		try
 		{
@@ -128,16 +129,24 @@ public class Controlador implements ActionListener
 		this.vista.actualizaCliente();
 	}
 
-	private void seleccionarCandidato()
+	/**
+	 * <b>Pre:</b> Hay un Cliente logueado en la agencia.<br>
+	 * Al cliente que esta logeado, se le asigna como candidato el valor retornado por el metodo getCandidato del atributo vista.<br>
+	 * Si el valor obtenido es diferente de null, se muestra su informacion (metodo toString) en una ventana emergente.
+	 */
+	public void seleccionarCandidato()
 	{
-		Cliente cli=(Cliente) this.usuario;
+		Cliente cli = (Cliente) this.usuario;
 		cli.setCandidato(this.vista.getCandidato());
-		System.out.println(this.usuario + "  eligio a " + cli.getCandidato());
+		if (this.vista.getCandidato() != null)
+			this.myOptionPane.ShowMessage(cli.getCandidato().toString());
 	}
 
 	/**
-	 * Se encarga de aplicar una promocion en la aplicacion y luego mostrar
-	 * informacion sobre el cliente (metodo toString()) despues de aplicar la
+	 * Se encarga de aplicar una promocion en la aplicacion invocando al metodo
+	 * aplicarPromo de la clase Agencia, utilizando como parametro, el valor
+	 * obtenido por el metodo isPorTicket del atributo Vista. Luego se muestra
+	 * informacion sobre el cliente (metodo toString()) selecionado para aplicar la
 	 * promocion en una ventana emergente
 	 * 
 	 * 
@@ -176,8 +185,8 @@ public class Controlador implements ActionListener
 	/**
 	 * El metodo se utiliza para iniciar una nueva ronda de contrataciones en el
 	 * sistema de la agencia, invocando el metodo correspondiente en la instancia de
-	 * la clase Agencia. Muestra en una ventana el estado en el que queda la
-	 * agencia, mediante el metdo getEstado()
+	 * la clase Agencia. Muestra en una ventana emergente el estado en el que queda
+	 * la agencia, mediante el metdo getEstado()
 	 */
 
 	public void gatillar()
@@ -233,7 +242,7 @@ public class Controlador implements ActionListener
 
 	public void nuevoTicket()
 	{
-		Cliente cliente=(Cliente) this.usuario;
+		Cliente cliente = (Cliente) this.usuario;
 		String jornada = this.vista.getJornada();
 		String locacion = this.vista.getLocacion();
 		String estudios = this.vista.getEstudios();
@@ -335,9 +344,11 @@ public class Controlador implements ActionListener
 	 * credenciales ingresadas en la vista
 	 * 
 	 * Si el logueo no es exitoso porque la contrasena es erronea se trata la
-	 * excepcion ContraException y se muestra el mensaje de error correspondiente al enumerado Mensajes.PASS_ERRONEO.  Si el logueo no es
-	 * exitoso porque lel usuario no existe se trata la excepcion 
-	 * NombreUsuarioException y se muestra el mensaje de error correspondiente al enumerado Mensajes.USUARIO_DESCONOCIDO.
+	 * excepcion ContraException y se muestra el mensaje de error correspondiente al
+	 * enumerado Mensajes.PASS_ERRONEO. Si el logueo no es exitoso porque lel
+	 * usuario no existe se trata la excepcion NombreUsuarioException y se muestra
+	 * el mensaje de error correspondiente al enumerado
+	 * Mensajes.USUARIO_DESCONOCIDO.
 	 * 
 	 */
 
@@ -346,7 +357,7 @@ public class Controlador implements ActionListener
 		try
 		{
 			this.usuario = this.agencia.login(this.vista.getUsserName(), this.vista.getPassword());
-			
+
 			this.vista.actualizar(Agencia.getInstance().getTipoUsuario(), usuario);
 
 		} catch (ContraException e)

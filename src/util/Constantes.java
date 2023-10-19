@@ -82,5 +82,7 @@ public class Constantes
 	public static final String TEXTO_SUPERIOR = "TEXTO_SUPERIOR";
 	public static final String LISTA_EMPLEADORES = "LISTA_EMPLEADORES";
 	public static final String LISTA_EMPLEADOS = "LISTA_EMPLEADOS";
+	public static final String TEXTFIELD_REMUNERACION = "TEXTFIELD_REMUNERACION";
+	
 
 }

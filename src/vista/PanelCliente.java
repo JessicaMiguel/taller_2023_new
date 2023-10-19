@@ -25,6 +25,7 @@ import modeloDatos.ClientePuntaje;
 import modeloDatos.Cliente;
 import modeloNegocio.Agencia;
 import util.Constantes;
+import util.Mensajes;
 
 public class PanelCliente extends PanelAgencia
 {
@@ -319,6 +320,8 @@ public class PanelCliente extends PanelAgencia
 		textFieldRemuneracion.setEnabled(false);
 		panel_13.add(textFieldRemuneracion);
 		textFieldRemuneracion.setColumns(20);
+		textFieldRemuneracion.setName(Constantes.TEXTFIELD_REMUNERACION);
+		
 
 		panel_7 = new JPanel();
 		panel_5.add(panel_7, BorderLayout.SOUTH);
@@ -519,7 +522,7 @@ public class PanelCliente extends PanelAgencia
 			this.textAreaTicket.setText(this.cliente.getTicket().toString());
 		else
 		{
-			this.textAreaTicket.setText("Sin Ticket");
+			this.textAreaTicket.setText(Mensajes.SIN_TICKET.getValor());
 		}
 		this.btnEliminarTicket.setEnabled(this.cliente.getTicket() != null);
 		Cliente emparejamiento = null;

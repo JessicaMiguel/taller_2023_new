@@ -803,6 +803,11 @@ public class Agencia
 		cli.setPuntaje(cli.getPuntaje() - 1);
 	}
 
+	/**
+	 * @return un String dependiendo del estado en que se encuentre la Agencia, estos pueden ser:<br>
+	 *  Mensajes.AGENCIA_EN_CONTRATACION.getValor()<br> 
+	 *  Mensajes.AGENCIA_EN_BUSQUEDA.getValor() 
+	 */
 	public String getEstado()
 	{
 		String cartel = null;

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="17.0.7" class="java.beans.XMLDecoder">
+ <object class="persistencia.AgenciaDTO" id="AgenciaDTO0">
+  <void property="empleados">
+   <void method="put">
+    <string>juan</string>
+    <object class="modeloDatos.EmpleadoPretenso">
+     <void property="apellido">
+      <string>juan</string>
+     </void>
+     <void property="edad">
+      <int>23</int>
+     </void>
+     <void property="password">
+      <string>juan</string>
+     </void>
+     <void property="puntaje">
+      <int>-4</int>
+     </void>
+     <void property="realName">
+      <string>juan</string>
+     </void>
+     <void property="telefono">
+      <string>juan</string>
+     </void>
+     <void property="usserName">
+      <string>juan</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="limiteSuperior">
+   <int>2000</int>
+  </void>
+ </object>
+</java>
