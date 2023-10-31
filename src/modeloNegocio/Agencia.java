@@ -677,37 +677,103 @@ public class Agencia
 	 * 
 	 */
 
-	public Cliente aplicaPromo(boolean promoPorListaDePostulantes)
-	{
+	public Cliente aplicaPromo(boolean promoPorListaDePostulantes, String tipoPromocion,
+			HashMap<String, EmpleadoPretenso> empleados, HashMap<String, Empleador> empleadores) {
 		Iterator clientes = null;
 		int contadorEmpleador = 0;
 		int contadorEmpleadoPretenso = 0;
 		Cliente clienteBeneficiado = null;
 
-		if (promoPorListaDePostulantes)
-		{
+		if (promoPorListaDePostulantes) {
+			Iterator<Empleador> itEmpleadores = empleadores.values().iterator();
+			while (itEmpleadores.hasNext()) {
+				Empleador empleador = itEmpleadores.next();
+				if (empleador.getListaDePostulantes() != null)
+					contadorEmpleador += empleador.getListaDePostulantes().size();
+			}
+			Iterator<EmpleadoPretenso> itEmpleados = empleados.values().iterator();
+			while (itEmpleados.hasNext()) {
+				EmpleadoPretenso empleadoPretenso = itEmpleados.next();
+				if (empleadoPretenso.getListaDePostulantes() != null)
+					contadorEmpleadoPretenso += empleadoPretenso.getListaDePostulantes().size();
+			}
+		} else {
+			contadorEmpleador = empleadores.size();
+			contadorEmpleadoPretenso = empleados.size();
+		}
 
+		if (contadorEmpleador > contadorEmpleadoPretenso)
+			clientes = empleadores.values().iterator();
+		else
+			clientes = empleados.values().iterator();
+
+		int puntajeMaximo = Integer.MIN_VALUE;
+		while (clientes.hasNext()) {
+			Cliente cl = (Cliente) clientes.next();
+			if (cl.getPuntaje() > puntajeMaximo) {
+				puntajeMaximo = cl.getPuntaje();
+				clienteBeneficiado = cl;
+			}
+		}
+
+		// Tipo de promo
+		if (tipoPromocion.equals("Training")) {
+			ganaTraining(clienteBeneficiado);
+		} else if (tipoPromocion.equals("Regalo")) {
+			darRegalo(clienteBeneficiado);
+		} else if (tipoPromocion.equals("Prueba")) {
+			darPruebaPremium(clienteBeneficiado);
+		} else {
+			accesoEvento(clienteBeneficiado);
+		}
+
+		return clienteBeneficiado;
+	}
+
+
+    private void ganaTraining(Cliente cliente) {
+        System.out.println("Training especializado ganado a elección " + cliente.toString());
+    }
+
+    private void darRegalo(Cliente cliente) {
+        System.out.println("Regalo entregado a " + cliente.toString());
+    }
+
+      private void darPruebaPremium(Cliente cliente) {
+        System.out.println("Prueba de servicio premium " + cliente.toString());
+    }
+
+	private void accesoEvento(Cliente cliente) {
+	    System.out.println("Acceso a eventos exclusivos " + cliente.toString());
+	}
+	
+	
+	
+	//METODO ORIGINAL
+	public Cliente aplicaPromo(boolean promoPorListaDePostulantes){
+		Iterator clientes = null;
+		int contadorEmpleador = 0;
+		int contadorEmpleadoPretenso = 0;
+		Cliente clienteBeneficiado = null;
+
+		if (promoPorListaDePostulantes){
 			Iterator<Empleador> itEmpleadores = this.empleadores.values().iterator();
-			while (itEmpleadores.hasNext())
-
-			{
+			while (itEmpleadores.hasNext()){
 				Empleador empleador = itEmpleadores.next();
 				if (empleador.getListaDePostulantes() != null)
 					contadorEmpleador += empleador.getListaDePostulantes().size();
 			}
 			Iterator<EmpleadoPretenso> itEmpleados = this.empleados.values().iterator();
-			while (itEmpleados.hasNext())
-			{
+			while (itEmpleados.hasNext()){
 				EmpleadoPretenso empleadoPretenso = itEmpleados.next();
 				if (empleadoPretenso.getListaDePostulantes() != null)
 					contadorEmpleadoPretenso += empleadoPretenso.getListaDePostulantes().size();
 			}
-		} else
-		{
-
+		} else{
 			contadorEmpleador = this.empleadores.size();
 			contadorEmpleadoPretenso = this.empleados.size();
 		}
+        
 		if (contadorEmpleador > contadorEmpleadoPretenso)
 			clientes = this.empleadores.values().iterator();
 		else
