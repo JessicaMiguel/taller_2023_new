@@ -196,7 +196,20 @@ public class PanelCliente extends PanelAgencia
 
 		// panel_5.add(panel_6, BorderLayout.CENTER);
 		panel_6.setLayout(new GridLayout(0, 1, 0, 0));
+		panel_13 = new JPanel();
+		panel_13.setEnabled(false);
+		panel_13.setBorder(
+				new TitledBorder(null, "Remuneracion Pretendida", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_6.add(panel_13);
 
+		textFieldRemuneracion = new JTextField();
+		this.textFieldRemuneracion.addKeyListener(this);
+		textFieldRemuneracion.setEnabled(false);
+		panel_13.add(textFieldRemuneracion);
+		textFieldRemuneracion.setColumns(20);
+		textFieldRemuneracion.setName(Constantes.TEXTFIELD_REMUNERACION);
+		
+		
 		panel_8 = new JPanel();
 		panel_8.setEnabled(false);
 		panel_8.setBorder(new TitledBorder(null, "Locacion", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -309,18 +322,6 @@ public class PanelCliente extends PanelAgencia
 		buttonGroupEstudios.add(rdbtnTerciario);
 		panel_12.add(rdbtnTerciario);
 
-		panel_13 = new JPanel();
-		panel_13.setEnabled(false);
-		panel_13.setBorder(
-				new TitledBorder(null, "Remuneracion Pretendida", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_6.add(panel_13);
-
-		textFieldRemuneracion = new JTextField();
-		this.textFieldRemuneracion.addKeyListener(this);
-		textFieldRemuneracion.setEnabled(false);
-		panel_13.add(textFieldRemuneracion);
-		textFieldRemuneracion.setColumns(20);
-		textFieldRemuneracion.setName(Constantes.TEXTFIELD_REMUNERACION);
 		
 
 		panel_7 = new JPanel();
