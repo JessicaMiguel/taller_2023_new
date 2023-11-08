@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="17.0.7" class="java.beans.XMLDecoder">
+<java version="17.0.6" class="java.beans.XMLDecoder">
  <object class="persistencia.AgenciaDTO" id="AgenciaDTO0">
   <void property="empleados">
    <void method="put">
@@ -22,6 +22,28 @@
      </void>
      <void property="telefono">
       <string>juan</string>
+     </void>
+     <void property="ticket">
+      <object class="modeloDatos.Ticket">
+       <void property="estudios">
+        <string>Primario</string>
+       </void>
+       <void property="experiencia">
+        <string>ExperienciaNada</string>
+       </void>
+       <void property="jornada">
+        <string>CargaMedia</string>
+       </void>
+       <void property="locacion">
+        <string>Indistinto</string>
+       </void>
+       <void property="puesto">
+        <string>Managment</string>
+       </void>
+       <void property="remuneracion">
+        <int>12</int>
+       </void>
+      </object>
      </void>
      <void property="usserName">
       <string>juan</string>
